@@ -31,5 +31,14 @@ namespace BIT706_A3_LukeNoble_5030271
         {
             this.Close();
         }
+
+        private void btnManageAccounts_Click(object sender, EventArgs e)
+        {
+            AccountManagement manageAccounts = new AccountManagement();
+            manageAccounts.ShowDialog();
+            this.Hide();
+
+            this.Show();
+        }
     }
 }
