@@ -11,9 +11,12 @@ namespace BIT706_A3_LukeNoble_5030271
         private int customerId;
         private string name = "";
         private static int nextId = 1;
+        private bool isStaff;
+        public List<Account> AllAccounts = new List<Account>();
 
         public string Name { get => name; set => name = value; }
         public int CustomerId { get => customerId; }
+        public bool IsStaff { get => isStaff; set => isStaff = value; }
 
         public Customer()
         {
@@ -29,6 +32,10 @@ namespace BIT706_A3_LukeNoble_5030271
         public void EditCustomer(string newName)
         {
             name = newName;
+        }
+        public void AddAccount(Account account)
+        {
+            AllAccounts.Add(account);
         }
         public override string ToString()
         {

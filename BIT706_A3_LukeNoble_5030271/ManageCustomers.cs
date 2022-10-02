@@ -89,6 +89,18 @@ namespace BIT706_A3_LukeNoble_5030271
                 }
             }
         }
+
+        private void btnManageAccounts_Click(object sender, EventArgs e)
+        {
+            if(validateCustomerSelected())
+            {
+                AccountManagement accountManagement = new AccountManagement();
+                accountManagement.ShowDialog();
+
+                DisplayCustomers();
+                showMessages();
+            }
+        }
         // Check customer is selected from listbox, store customer object in controller
         private bool validateCustomerSelected()
         {
