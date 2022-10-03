@@ -10,11 +10,14 @@ namespace BIT706_A3_LukeNoble_5030271
     {
         public string ErrorMessage { get; set; }
         public string? InfoMessage { get; set; }
+        protected double fee = 10;
+        protected double interest = 4; // 4%
+        protected double overdraftLimit = 100;
         public Customer? cust { get; set; }
         public List<Customer> AllCust = new List<Customer>();
 
         // Create new Customer and add to AllCust list. Create info or error messages
-        public void CreateCustomer(string name)
+        public void CreateCustomer(string name, bool staffMember)
         {
 
             ResetMessages();
@@ -26,7 +29,11 @@ namespace BIT706_A3_LukeNoble_5030271
             {
                 try
                 {
-                    AllCust.Add(new Customer(name));
+                    Customer customer = new Customer(name, staffMember);
+                    customer.AddAccount(new Everyday(0));
+                    customer.AddAccount(new Investment(0, fee, interest));
+                    customer.AddAccount(new Omni(0, fee, interest, overdraftLimit));
+                    AllCust.Add(customer);
                     InfoMessage = "New customer: " + name + " added with customerId of: " + FindCustomerByName(name).CustomerId;
                 }
                 catch

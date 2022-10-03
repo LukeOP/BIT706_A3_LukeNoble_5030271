@@ -18,18 +18,16 @@ namespace BIT706_A3_LukeNoble_5030271
         public AccountManagement()
         {
             InitializeComponent();
-            Form1_Shown();
+            setCustomerData();
         }
-        private void Form1_Shown()
+        private void setCustomerData()
         {
-            if (AllAccounts.Count == 0)
+            lCustomerName.Text = control.cust.Name;
+            if (control.cust.IsStaff) lStaffMember.Text = "Staff Member: True";
+            else lStaffMember.Text = "Staff Member: False";
+            foreach (Account account in control.cust.Accounts)
             {
-                Everyday AccountEveryday = new Everyday(12.50);
-                Investment InvestmentAccount = new Investment(1000, 10, 4);
-                Omni OmniAccount = new Omni(2500, 15, 3.5, 100);
-                AllAccounts.Add(AccountEveryday);
-                AllAccounts.Add(InvestmentAccount);
-                AllAccounts.Add(OmniAccount);
+                AllAccounts.Add(account);
             }
             DisplayAccounts();
         }

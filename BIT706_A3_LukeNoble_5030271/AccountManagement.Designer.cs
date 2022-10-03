@@ -37,6 +37,9 @@
             this.btnWithdraw = new System.Windows.Forms.Button();
             this.btnCalculateInterest = new System.Windows.Forms.Button();
             this.btnGetDetails = new System.Windows.Forms.Button();
+            this.lCustomerName = new System.Windows.Forms.Label();
+            this.btnAddAccount = new System.Windows.Forms.Button();
+            this.lStaffMember = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnDeposit
@@ -99,7 +102,7 @@
             // btnWithdraw
             // 
             this.btnWithdraw.BackColor = System.Drawing.Color.Gold;
-            this.btnWithdraw.Location = new System.Drawing.Point(225, 200);
+            this.btnWithdraw.Location = new System.Drawing.Point(225, 193);
             this.btnWithdraw.Name = "btnWithdraw";
             this.btnWithdraw.Size = new System.Drawing.Size(178, 35);
             this.btnWithdraw.TabIndex = 23;
@@ -121,7 +124,7 @@
             // btnGetDetails
             // 
             this.btnGetDetails.BackColor = System.Drawing.Color.Gold;
-            this.btnGetDetails.Location = new System.Drawing.Point(410, 200);
+            this.btnGetDetails.Location = new System.Drawing.Point(410, 193);
             this.btnGetDetails.Name = "btnGetDetails";
             this.btnGetDetails.Size = new System.Drawing.Size(178, 35);
             this.btnGetDetails.TabIndex = 24;
@@ -129,11 +132,43 @@
             this.btnGetDetails.UseVisualStyleBackColor = false;
             this.btnGetDetails.Click += new System.EventHandler(this.btnGetDetails_Click);
             // 
+            // lCustomerName
+            // 
+            this.lCustomerName.AutoSize = true;
+            this.lCustomerName.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lCustomerName.Location = new System.Drawing.Point(12, 70);
+            this.lCustomerName.Name = "lCustomerName";
+            this.lCustomerName.Size = new System.Drawing.Size(164, 30);
+            this.lCustomerName.TabIndex = 26;
+            this.lCustomerName.Text = "Customer Name";
+            // 
+            // btnAddAccount
+            // 
+            this.btnAddAccount.BackColor = System.Drawing.Color.Gold;
+            this.btnAddAccount.Location = new System.Drawing.Point(225, 232);
+            this.btnAddAccount.Name = "btnAddAccount";
+            this.btnAddAccount.Size = new System.Drawing.Size(178, 35);
+            this.btnAddAccount.TabIndex = 27;
+            this.btnAddAccount.Text = "Add Account";
+            this.btnAddAccount.UseVisualStyleBackColor = false;
+            // 
+            // lStaffMember
+            // 
+            this.lStaffMember.AutoSize = true;
+            this.lStaffMember.Location = new System.Drawing.Point(435, 78);
+            this.lStaffMember.Name = "lStaffMember";
+            this.lStaffMember.Size = new System.Drawing.Size(82, 15);
+            this.lStaffMember.TabIndex = 28;
+            this.lStaffMember.Text = "Staff Member:";
+            // 
             // AccountManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 465);
+            this.Controls.Add(this.lStaffMember);
+            this.Controls.Add(this.btnAddAccount);
+            this.Controls.Add(this.lCustomerName);
             this.Controls.Add(this.btnCalculateInterest);
             this.Controls.Add(this.btnGetDetails);
             this.Controls.Add(this.btnWithdraw);
@@ -154,6 +189,9 @@
             this.Controls.SetChildIndex(this.btnWithdraw, 0);
             this.Controls.SetChildIndex(this.btnGetDetails, 0);
             this.Controls.SetChildIndex(this.btnCalculateInterest, 0);
+            this.Controls.SetChildIndex(this.lCustomerName, 0);
+            this.Controls.SetChildIndex(this.btnAddAccount, 0);
+            this.Controls.SetChildIndex(this.lStaffMember, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,5 +208,8 @@
         private Button btnWithdraw;
         private Button btnCalculateInterest;
         private Button btnGetDetails;
+        private Label lCustomerName;
+        private Button btnAddAccount;
+        private Label lStaffMember;
     }
 }

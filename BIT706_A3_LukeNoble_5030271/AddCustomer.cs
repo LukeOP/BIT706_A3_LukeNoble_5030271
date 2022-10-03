@@ -19,7 +19,7 @@ namespace BIT706_A3_LukeNoble_5030271
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            control.CreateCustomer(tbCustomerName.Text);
+            control.CreateCustomer(tbCustomerName.Text, cbStaff.Checked);
             this.Close();
         }
     }

@@ -49,7 +49,7 @@
             this.btnManageCustomers.Name = "btnManageCustomers";
             this.btnManageCustomers.Size = new System.Drawing.Size(292, 69);
             this.btnManageCustomers.TabIndex = 3;
-            this.btnManageCustomers.Text = "Manage Customers";
+            this.btnManageCustomers.Text = "Add and Edit Customers";
             this.btnManageCustomers.UseVisualStyleBackColor = true;
             this.btnManageCustomers.Click += new System.EventHandler(this.btnManageCustomers_Click_1);
             // 
@@ -59,7 +59,7 @@
             this.btnManageAccounts.Name = "btnManageAccounts";
             this.btnManageAccounts.Size = new System.Drawing.Size(292, 69);
             this.btnManageAccounts.TabIndex = 5;
-            this.btnManageAccounts.Text = "Manage Accounts";
+            this.btnManageAccounts.Text = "Manage Customer Accounts";
             this.btnManageAccounts.UseVisualStyleBackColor = true;
             this.btnManageAccounts.Click += new System.EventHandler(this.btnManageAccounts_Click);
             // 
