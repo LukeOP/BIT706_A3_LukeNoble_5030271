@@ -37,10 +37,10 @@ namespace BIT706_A3_LukeNoble_5030271
         {
             if (control.AllCust.Count == 0)
             {
-                control.CreateCustomer("James Wilson");
-                control.CreateCustomer("Sam Clive");
-                control.CreateCustomer("Suzie Morrison");
-                control.CreateCustomer("Julia Gaines");
+                control.CreateCustomer("James Wilson", false);
+                control.CreateCustomer("Sam Clive", false);
+                control.CreateCustomer("Suzie Morrison", false);
+                control.CreateCustomer("Julia Gaines", true);
             }
             DisplayCustomers();
         }

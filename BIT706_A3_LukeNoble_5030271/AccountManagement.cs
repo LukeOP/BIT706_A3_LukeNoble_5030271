@@ -23,7 +23,9 @@ namespace BIT706_A3_LukeNoble_5030271
         private void setCustomerData()
         {
             lCustomerName.Text = control.cust.Name;
-            foreach (Account account in control.cust.AllAccounts)
+            if (control.cust.IsStaff) lStaffMember.Text = "Staff Member: True";
+            else lStaffMember.Text = "Staff Member: False";
+            foreach (Account account in control.cust.Accounts)
             {
                 AllAccounts.Add(account);
             }

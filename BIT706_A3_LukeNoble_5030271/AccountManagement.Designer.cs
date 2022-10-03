@@ -39,6 +39,7 @@
             this.btnGetDetails = new System.Windows.Forms.Button();
             this.lCustomerName = new System.Windows.Forms.Label();
             this.btnAddAccount = new System.Windows.Forms.Button();
+            this.lStaffMember = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnDeposit
@@ -151,11 +152,21 @@
             this.btnAddAccount.Text = "Add Account";
             this.btnAddAccount.UseVisualStyleBackColor = false;
             // 
+            // lStaffMember
+            // 
+            this.lStaffMember.AutoSize = true;
+            this.lStaffMember.Location = new System.Drawing.Point(435, 78);
+            this.lStaffMember.Name = "lStaffMember";
+            this.lStaffMember.Size = new System.Drawing.Size(82, 15);
+            this.lStaffMember.TabIndex = 28;
+            this.lStaffMember.Text = "Staff Member:";
+            // 
             // AccountManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 465);
+            this.Controls.Add(this.lStaffMember);
             this.Controls.Add(this.btnAddAccount);
             this.Controls.Add(this.lCustomerName);
             this.Controls.Add(this.btnCalculateInterest);
@@ -180,6 +191,7 @@
             this.Controls.SetChildIndex(this.btnCalculateInterest, 0);
             this.Controls.SetChildIndex(this.lCustomerName, 0);
             this.Controls.SetChildIndex(this.btnAddAccount, 0);
+            this.Controls.SetChildIndex(this.lStaffMember, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,5 +210,6 @@
         private Button btnGetDetails;
         private Label lCustomerName;
         private Button btnAddAccount;
+        private Label lStaffMember;
     }
 }

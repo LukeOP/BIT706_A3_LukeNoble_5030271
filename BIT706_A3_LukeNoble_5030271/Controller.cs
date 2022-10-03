@@ -17,7 +17,7 @@ namespace BIT706_A3_LukeNoble_5030271
         public List<Customer> AllCust = new List<Customer>();
 
         // Create new Customer and add to AllCust list. Create info or error messages
-        public void CreateCustomer(string name)
+        public void CreateCustomer(string name, bool staffMember)
         {
 
             ResetMessages();
@@ -29,7 +29,7 @@ namespace BIT706_A3_LukeNoble_5030271
             {
                 try
                 {
-                    Customer customer = new Customer(name);
+                    Customer customer = new Customer(name, staffMember);
                     customer.AddAccount(new Everyday(0));
                     customer.AddAccount(new Investment(0, fee, interest));
                     customer.AddAccount(new Omni(0, fee, interest, overdraftLimit));
