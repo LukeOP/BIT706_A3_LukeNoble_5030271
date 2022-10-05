@@ -8,11 +8,12 @@ namespace BIT706_A3_LukeNoble_5030271
 {
     public class Controller
     {
-        public string ErrorMessage { get; set; }
+        public string? ErrorMessage { get; set; }
         public string? InfoMessage { get; set; }
         protected double fee = 10;
         protected double interest = 4; // 4%
         protected double overdraftLimit = 100;
+        protected string? LastTransaction { get; set; }
         public Customer? cust { get; set; }
         public List<Customer> AllCust = new List<Customer>();
 
@@ -112,6 +113,60 @@ namespace BIT706_A3_LukeNoble_5030271
         {
             InfoMessage = "";
             ErrorMessage = "";
+        }
+
+        public void deposit(Account acc, double amount)
+        {
+            acc.Deposit(amount);
+            LastTransaction = acc.GetLastTransaction();
+        }
+
+        public void withdraw(Account acc, double amount)
+        {
+            try
+            {
+                acc.Withdraw(amount, cust.IsStaff);
+                LastTransaction = acc.GetLastTransaction();
+
+            }
+            catch (AccountWithdrawlFailedException ex)
+            {
+                ErrorMessage = ex.Message;
+                LastTransaction = ex.Message;
+            }
+            
+        }
+        public void addInterest(Account acc)
+        {
+            try
+            {
+                acc.AddInterest();
+                LastTransaction = acc.GetLastTransaction();
+            }
+            catch (AccountAddInterestFailedException ex)
+            {
+                ErrorMessage = ex.Message;
+                LastTransaction = ex.Message;
+            }
+        }
+
+        public void handleTransfer(Account fromAccount, Account toAccount, double amount)
+        {
+            if (fromAccount.AvailableFunds() >= amount)
+            {
+                fromAccount.Withdraw(amount, cust.IsStaff);
+                toAccount.Deposit(amount);
+            }
+            else
+            {
+                ErrorMessage = "Insufficient funds to make transfer";
+                LastTransaction = ErrorMessage;
+            }
+
+        }
+        public string getLastTransaction()
+        {
+            return LastTransaction;
         }
     }
 }

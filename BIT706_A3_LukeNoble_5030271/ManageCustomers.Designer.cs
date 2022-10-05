@@ -33,8 +33,6 @@
             this.btnEditCustomer = new System.Windows.Forms.Button();
             this.btnAddCustomer = new System.Windows.Forms.Button();
             this.lbCustomers = new System.Windows.Forms.ListBox();
-            this.lErrorMessage = new System.Windows.Forms.Label();
-            this.lInfoMessage = new System.Windows.Forms.Label();
             this.btnManageAccounts = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -84,25 +82,8 @@
             this.lbCustomers.ItemHeight = 15;
             this.lbCustomers.Location = new System.Drawing.Point(228, 73);
             this.lbCustomers.Name = "lbCustomers";
-            this.lbCustomers.Size = new System.Drawing.Size(209, 184);
+            this.lbCustomers.Size = new System.Drawing.Size(209, 244);
             this.lbCustomers.TabIndex = 7;
-            // 
-            // lErrorMessage
-            // 
-            this.lErrorMessage.AutoSize = true;
-            this.lErrorMessage.ForeColor = System.Drawing.Color.Red;
-            this.lErrorMessage.Location = new System.Drawing.Point(230, 282);
-            this.lErrorMessage.Name = "lErrorMessage";
-            this.lErrorMessage.Size = new System.Drawing.Size(0, 15);
-            this.lErrorMessage.TabIndex = 13;
-            // 
-            // lInfoMessage
-            // 
-            this.lInfoMessage.AutoSize = true;
-            this.lInfoMessage.Location = new System.Drawing.Point(230, 262);
-            this.lInfoMessage.Name = "lInfoMessage";
-            this.lInfoMessage.Size = new System.Drawing.Size(0, 15);
-            this.lInfoMessage.TabIndex = 12;
             // 
             // btnManageAccounts
             // 
@@ -120,8 +101,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(449, 326);
             this.Controls.Add(this.btnManageAccounts);
-            this.Controls.Add(this.lErrorMessage);
-            this.Controls.Add(this.lInfoMessage);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnDeleteCustomer);
             this.Controls.Add(this.btnEditCustomer);
@@ -135,8 +114,6 @@
             this.Controls.SetChildIndex(this.btnEditCustomer, 0);
             this.Controls.SetChildIndex(this.btnDeleteCustomer, 0);
             this.Controls.SetChildIndex(this.btnMenu, 0);
-            this.Controls.SetChildIndex(this.lInfoMessage, 0);
-            this.Controls.SetChildIndex(this.lErrorMessage, 0);
             this.Controls.SetChildIndex(this.btnManageAccounts, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -150,8 +127,6 @@
         private Button btnEditCustomer;
         private Button btnAddCustomer;
         private ListBox lbCustomers;
-        private Label lErrorMessage;
-        private Label lInfoMessage;
         private Button btnManageAccounts;
     }
 }
