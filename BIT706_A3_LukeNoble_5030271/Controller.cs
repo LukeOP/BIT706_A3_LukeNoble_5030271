@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -167,6 +168,17 @@ namespace BIT706_A3_LukeNoble_5030271
         public string getLastTransaction()
         {
             return LastTransaction;
+        }
+
+        public void addAccount(string accountType)
+        {
+            if (accountType == "Everyday Account") cust.AddAccount(new Everyday(0));
+            else if (accountType == "Investment Account") cust.AddAccount(new Investment(0, fee, interest));
+            else if (accountType == "Omni Account") cust.AddAccount(new Omni(0, fee, interest, overdraftLimit));
+            else
+            {
+                throw new AddAccountFailedException("Unable to create a new account");
+            }
         }
     }
 }

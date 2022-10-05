@@ -26,6 +26,7 @@ namespace BIT706_A3_LukeNoble_5030271
             lCustomerName.Text = control.cust.Name;
             if (control.cust.IsStaff) lStaffMember.Text = "Staff Member: True";
             else lStaffMember.Text = "Staff Member: False";
+            AllAccounts.Clear();
             foreach (Account account in control.cust.Accounts)
             {
                 AllAccounts.Add(account);
@@ -127,7 +128,12 @@ namespace BIT706_A3_LukeNoble_5030271
 
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
-            throw new NullReferenceException();
+            AddAccount addAccount = new AddAccount();
+            addAccount.ShowDialog();
+            this.Hide();
+
+            this.Show();
+            setCustomerData();
         }
 
         private void btnTransfer_Click(object sender, EventArgs e)
