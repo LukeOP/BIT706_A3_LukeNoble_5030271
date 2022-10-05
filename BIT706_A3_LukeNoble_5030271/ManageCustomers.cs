@@ -56,7 +56,6 @@ namespace BIT706_A3_LukeNoble_5030271
             addCust.ShowDialog();
 
             DisplayCustomers();
-            showMessages();
 
         }
 
@@ -69,7 +68,6 @@ namespace BIT706_A3_LukeNoble_5030271
                 editCust.ShowDialog();
 
                 DisplayCustomers();
-                showMessages();
             }
         }
 
@@ -85,7 +83,6 @@ namespace BIT706_A3_LukeNoble_5030271
                 {
                     control.DeleteCustomer(control.cust);
                     DisplayCustomers();
-                    showMessages();
                 }
             }
         }
@@ -98,7 +95,6 @@ namespace BIT706_A3_LukeNoble_5030271
                 accountManagement.ShowDialog();
 
                 DisplayCustomers();
-                showMessages();
             }
         }
         // Check customer is selected from listbox, store customer object in controller
@@ -120,14 +116,8 @@ namespace BIT706_A3_LukeNoble_5030271
         // Close Manage customer window
         private void btnMenu_Click(object sender, EventArgs e)
         {
+            control.ResetMessages();
             this.Close();
-        }
-
-        // show any new messages
-        private void showMessages()
-        {
-            lErrorMessage.Text = control.ErrorMessage;
-            lInfoMessage.Text = control.InfoMessage;
         }
     }
 }

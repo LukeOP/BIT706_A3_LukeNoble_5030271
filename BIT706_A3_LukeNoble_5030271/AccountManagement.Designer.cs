@@ -36,10 +36,11 @@
             this.lstTransactions = new System.Windows.Forms.ListBox();
             this.btnWithdraw = new System.Windows.Forms.Button();
             this.btnCalculateInterest = new System.Windows.Forms.Button();
-            this.btnGetDetails = new System.Windows.Forms.Button();
             this.lCustomerName = new System.Windows.Forms.Label();
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.lStaffMember = new System.Windows.Forms.Label();
+            this.btnTransfer = new System.Windows.Forms.Button();
+            this.lErrorMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnDeposit
@@ -96,7 +97,7 @@
             this.lstTransactions.ItemHeight = 15;
             this.lstTransactions.Location = new System.Drawing.Point(12, 269);
             this.lstTransactions.Name = "lstTransactions";
-            this.lstTransactions.Size = new System.Drawing.Size(576, 184);
+            this.lstTransactions.Size = new System.Drawing.Size(576, 109);
             this.lstTransactions.TabIndex = 21;
             // 
             // btnWithdraw
@@ -121,17 +122,6 @@
             this.btnCalculateInterest.UseVisualStyleBackColor = false;
             this.btnCalculateInterest.Click += new System.EventHandler(this.btnCalculateInterest_Click);
             // 
-            // btnGetDetails
-            // 
-            this.btnGetDetails.BackColor = System.Drawing.Color.Gold;
-            this.btnGetDetails.Location = new System.Drawing.Point(410, 193);
-            this.btnGetDetails.Name = "btnGetDetails";
-            this.btnGetDetails.Size = new System.Drawing.Size(178, 35);
-            this.btnGetDetails.TabIndex = 24;
-            this.btnGetDetails.Text = "Get Details";
-            this.btnGetDetails.UseVisualStyleBackColor = false;
-            this.btnGetDetails.Click += new System.EventHandler(this.btnGetDetails_Click);
-            // 
             // lCustomerName
             // 
             this.lCustomerName.AutoSize = true;
@@ -151,6 +141,7 @@
             this.btnAddAccount.TabIndex = 27;
             this.btnAddAccount.Text = "Add Account";
             this.btnAddAccount.UseVisualStyleBackColor = false;
+            this.btnAddAccount.Click += new System.EventHandler(this.btnAddAccount_Click);
             // 
             // lStaffMember
             // 
@@ -161,16 +152,38 @@
             this.lStaffMember.TabIndex = 28;
             this.lStaffMember.Text = "Staff Member:";
             // 
+            // btnTransfer
+            // 
+            this.btnTransfer.BackColor = System.Drawing.Color.Gold;
+            this.btnTransfer.Location = new System.Drawing.Point(410, 232);
+            this.btnTransfer.Name = "btnTransfer";
+            this.btnTransfer.Size = new System.Drawing.Size(178, 35);
+            this.btnTransfer.TabIndex = 29;
+            this.btnTransfer.Text = "Transfer";
+            this.btnTransfer.UseVisualStyleBackColor = false;
+            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
+            // 
+            // lErrorMessage
+            // 
+            this.lErrorMessage.AutoSize = true;
+            this.lErrorMessage.ForeColor = System.Drawing.Color.Red;
+            this.lErrorMessage.Location = new System.Drawing.Point(13, 383);
+            this.lErrorMessage.Name = "lErrorMessage";
+            this.lErrorMessage.Size = new System.Drawing.Size(81, 15);
+            this.lErrorMessage.TabIndex = 30;
+            this.lErrorMessage.Text = "Error Message";
+            // 
             // AccountManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 465);
+            this.Controls.Add(this.lErrorMessage);
+            this.Controls.Add(this.btnTransfer);
             this.Controls.Add(this.lStaffMember);
             this.Controls.Add(this.btnAddAccount);
             this.Controls.Add(this.lCustomerName);
             this.Controls.Add(this.btnCalculateInterest);
-            this.Controls.Add(this.btnGetDetails);
             this.Controls.Add(this.btnWithdraw);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lstTransactions);
@@ -187,11 +200,12 @@
             this.Controls.SetChildIndex(this.lstTransactions, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.btnWithdraw, 0);
-            this.Controls.SetChildIndex(this.btnGetDetails, 0);
             this.Controls.SetChildIndex(this.btnCalculateInterest, 0);
             this.Controls.SetChildIndex(this.lCustomerName, 0);
             this.Controls.SetChildIndex(this.btnAddAccount, 0);
             this.Controls.SetChildIndex(this.lStaffMember, 0);
+            this.Controls.SetChildIndex(this.btnTransfer, 0);
+            this.Controls.SetChildIndex(this.lErrorMessage, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,9 +221,10 @@
         private ListBox lstTransactions;
         private Button btnWithdraw;
         private Button btnCalculateInterest;
-        private Button btnGetDetails;
         private Label lCustomerName;
         private Button btnAddAccount;
         private Label lStaffMember;
+        private Button btnTransfer;
+        private Label lErrorMessage;
     }
 }

@@ -40,8 +40,9 @@ namespace BIT706_A3_LukeNoble_5030271
         // Sets abstract methods
         public abstract void AddInterest();
         public abstract string AccountType();
-        public abstract void Withdraw(double amount);
+        public abstract void Withdraw(double amount, bool isStaff);
         public abstract void Deposit(double amount);
+        public abstract double AvailableFunds();
 
         //returns last transaction
         public string GetLastTransaction()
@@ -71,7 +72,7 @@ namespace BIT706_A3_LukeNoble_5030271
         }
 
         // Checks for available funds, withdraws if successful and sets last transaction, sets error transaction if insufficient funds
-        public override void Withdraw(double amount)
+        public override void Withdraw(double amount, bool isStaff)
         {
             if (balance >= amount)
             {
@@ -99,6 +100,11 @@ namespace BIT706_A3_LukeNoble_5030271
         {
             lastTransaction = "Transaction Failed: Interest cannot be added to an Everyday Bank Account!";
             throw new AccountAddInterestFailedException("Interest cannot be added to an Everyday Bank Account!");
+        }
+
+        public override double AvailableFunds()
+        {
+            return balance;
         }
     }
 
@@ -141,7 +147,7 @@ namespace BIT706_A3_LukeNoble_5030271
                 + "Interest Rate: " + interestRate + "%";
         }
         // Checks for available funds, withdraws if successful and sets last transaction, sets error transaction if insufficient funds and charges fee
-        public override void Withdraw(double amount)
+        public override void Withdraw(double amount, bool isStaff)
         {
             if (balance >= amount)
             {
@@ -151,11 +157,13 @@ namespace BIT706_A3_LukeNoble_5030271
             }
             else
             {
-                balance -= fee;
+                double tempFee = fee;
+                if (isStaff) tempFee = (fee / 2);
+                balance -= tempFee;
                 lastTransaction = type + " " + iD + "; withdrawal $" + amount
-                    + "; transaction failed; fee: $" + fee + "; \nNew balance: $" + balance;
+                    + "; transaction failed; fee: $" + tempFee + "; \nNew balance: $" + balance;
                 throw new AccountWithdrawlFailedException(type + " " + iD + "; withdrawal $" + amount
-                    + "; transaction failed; fee: $" + fee + "; \nNew balance: $" + balance);
+                    + "; transaction failed; fee: $" + tempFee + "; \nNew balance: $" + balance);
             }
         }
         // Adds deposit amount to balance, sets last transaction
@@ -171,6 +179,10 @@ namespace BIT706_A3_LukeNoble_5030271
             double interest = Math.Round(balance * (interestRate / 100), 2);
             balance += interest;
             lastTransaction = type + " " + iD + "; Add interest $" + interest + "; balance $" + balance;
+        }
+        public override double AvailableFunds()
+        {
+            return balance;
         }
     }
 
@@ -215,7 +227,7 @@ namespace BIT706_A3_LukeNoble_5030271
                 + "Overdraft Limit: $" + overdraftLimit;
         }
         // Checks for available funds, withdraws if successful and sets last transaction, sets error transaction if insufficient funds and charges fee
-        public override void Withdraw(double amount)
+        public override void Withdraw(double amount, bool isStaff)
         {
             if (balance + overdraftLimit >= amount)
             {
@@ -225,11 +237,13 @@ namespace BIT706_A3_LukeNoble_5030271
             }
             else
             {
-                balance -= fee;
+                double tempFee = fee;
+                if (isStaff) tempFee = (fee / 2);
+                balance -= tempFee;
                 lastTransaction = type + " " + iD + "; Overdraft Limit: $" + overdraftLimit + "; withdrawal $" + amount
-                    + "; transaction failed; fee: $" + fee + "; \nNew balance: $" + balance;
+                    + "; transaction failed; fee: $" + tempFee + "; \nNew balance: $" + balance;
                 throw new AccountWithdrawlFailedException(type + " " + iD + "; Overdraft Limit: $" + overdraftLimit + "; withdrawal $" + amount
-                    + "; transaction failed; fee: $" + fee + "; \nNew balance: $" + balance);
+                    + "; transaction failed; fee: $" + tempFee + "; \nNew balance: $" + balance);
             }
         }
         // Adds deposit amount to balance, sets last transaction
@@ -254,6 +268,11 @@ namespace BIT706_A3_LukeNoble_5030271
                 lastTransaction = type + " " + iD + " Transaction Failed: interest cannot be added when balance is less than 0";
             }
 
+        }
+
+        public override double AvailableFunds()
+        {
+            return balance + overdraftLimit;
         }
     }
 }

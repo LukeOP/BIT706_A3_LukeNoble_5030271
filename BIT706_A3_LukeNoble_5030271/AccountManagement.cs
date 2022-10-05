@@ -18,6 +18,7 @@ namespace BIT706_A3_LukeNoble_5030271
         public AccountManagement()
         {
             InitializeComponent();
+            ResetMessages();
             setCustomerData();
         }
         private void setCustomerData()
@@ -45,21 +46,8 @@ namespace BIT706_A3_LukeNoble_5030271
         // Adds a recent transaction to the transaction listbox
         private void AddTransactions(String transaction)
         {
+            AllTransactions.Add(transaction);
             lstTransactions.Items.Add(transaction);
-        }
-
-        // On Get Details Button click, gets info details from account class and displays to user with Message Box. Error if no account selected
-        private void btnGetDetails_Click(object sender, EventArgs e)
-        {
-            if (lstAccounts.SelectedItem == null)
-            {
-                MessageBox.Show("No account Selected", "Account Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                Account account = (Account)lstAccounts.Items[lstAccounts.SelectedIndex];
-                MessageBox.Show(account.Info(), "Account Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
         // On deposit Button click, validate input then deposit value and print transaction to listbox, refresh account list
@@ -68,11 +56,9 @@ namespace BIT706_A3_LukeNoble_5030271
             if (ValidateInput())
             {
                 Account account = (Account)lstAccounts.Items[lstAccounts.SelectedIndex];
-                account.Deposit(Double.Parse(tbAmount.Text));
-                AddTransactions(account.GetLastTransaction());
-                AllTransactions.Add(account.GetLastTransaction().ToString());
-                DisplayAccounts();
-                tbAmount.Text = "";
+                control.deposit(account, Double.Parse(tbAmount.Text));
+
+                updateTransactions();
             }
         }
 
@@ -82,69 +68,76 @@ namespace BIT706_A3_LukeNoble_5030271
             if (ValidateInput())
             {
                 Account account = (Account)lstAccounts.Items[lstAccounts.SelectedIndex];
-                try
+                control.withdraw(account, Double.Parse(tbAmount.Text));
+                if(control.ErrorMessage != "")
                 {
-                    account.Withdraw(Double.Parse(tbAmount.Text));
+                    MessageBox.Show(control.ErrorMessage, "Unable to Withdraw Funds", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                catch (AccountWithdrawlFailedException ex)
-                {
-                    MessageBox.Show(ex.Message, "Cannot Withdraw Funds", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                AddTransactions(account.GetLastTransaction());
-                AllTransactions.Add(account.GetLastTransaction().ToString());
-                DisplayAccounts();
-                tbAmount.Text = "";
+
+                updateTransactions();
             }
         }
 
         // On calculate interest click, check account is selected and then add interest based on account values. refresh lists and print transaction.
         private void btnCalculateInterest_Click(object sender, EventArgs e)
         {
-            if (lstAccounts.SelectedItem == null)
-            {
-                MessageBox.Show("No account Selected", "Account Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
+            if (ValidateAccountSelected())
             {
                 Account account = (Account)lstAccounts.Items[lstAccounts.SelectedIndex];
-                try
+                control.addInterest(account);
+                if (control.ErrorMessage != "")
                 {
-                    account.AddInterest();
-                }
-                catch (AccountAddInterestFailedException ex)
-                {
-                    MessageBox.Show(ex.Message, "Account Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(control.ErrorMessage, "Unable to Withdraw Funds", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                AddTransactions(account.GetLastTransaction());
-                AllTransactions.Add(account.GetLastTransaction().ToString());
-                DisplayAccounts();
+                updateTransactions();
             }
         }
 
         // Checks account is selected and input value is greater than 0
         private bool ValidateInput()
         {
-            try
+            ResetMessages();
+            if (!ValidateAccountSelected()) return false;
+            if (tbAmount.Text == "" || Double.Parse(tbAmount.Text) <= 0)
             {
-                if (lstAccounts.SelectedItem == null)
-                {
-                    MessageBox.Show("No account Selected", "Account Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-                else if (tbAmount.Text == "" || Double.Parse(tbAmount.Text) <= 0)
-                {
-                    MessageBox.Show("Entered amount must be greater than 0", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-                else return true;
-            }
-            catch
-            {
-                MessageBox.Show("Invalid Input... ", "Account Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Entered amount must be greater than 0", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            return true;
+        }
+        private bool ValidateAccountSelected()
+        {
+            if (lstAccounts.SelectedItem != null) return true;
+            MessageBox.Show("No account Selected", "Account Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+        private void updateTransactions()
+        {
+            AddTransactions(control.getLastTransaction());
+            DisplayAccounts();
+            ResetMessages();
+            tbAmount.Text = "";
+        }
+        private void ResetMessages()
+        {
+            control.ResetMessages();
+            lErrorMessage.Text = control.ErrorMessage;
+        }
 
+        private void btnAddAccount_Click(object sender, EventArgs e)
+        {
+            throw new NullReferenceException();
+        }
+
+        private void btnTransfer_Click(object sender, EventArgs e)
+        {
+            AccountTransfer transfer = new AccountTransfer();
+            transfer.ShowDialog();
+            this.Hide();
+
+            this.Show();
+            DisplayAccounts();
         }
     }
 }
