@@ -37,7 +37,7 @@
             // 
             // btnAddCustomer
             // 
-            this.btnAddCustomer.Location = new System.Drawing.Point(176, 155);
+            this.btnAddCustomer.Location = new System.Drawing.Point(176, 162);
             this.btnAddCustomer.Name = "btnAddCustomer";
             this.btnAddCustomer.Size = new System.Drawing.Size(155, 38);
             this.btnAddCustomer.TabIndex = 7;
@@ -47,7 +47,7 @@
             // 
             // tbCustomerName
             // 
-            this.tbCustomerName.Location = new System.Drawing.Point(52, 126);
+            this.tbCustomerName.Location = new System.Drawing.Point(52, 133);
             this.tbCustomerName.Name = "tbCustomerName";
             this.tbCustomerName.Size = new System.Drawing.Size(279, 23);
             this.tbCustomerName.TabIndex = 6;
@@ -55,7 +55,7 @@
             // lCustomerName
             // 
             this.lCustomerName.AutoSize = true;
-            this.lCustomerName.Location = new System.Drawing.Point(52, 108);
+            this.lCustomerName.Location = new System.Drawing.Point(52, 115);
             this.lCustomerName.Name = "lCustomerName";
             this.lCustomerName.Size = new System.Drawing.Size(97, 15);
             this.lCustomerName.TabIndex = 5;
@@ -65,7 +65,7 @@
             // 
             this.lAddCustomer.AutoSize = true;
             this.lAddCustomer.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lAddCustomer.Location = new System.Drawing.Point(70, 63);
+            this.lAddCustomer.Location = new System.Drawing.Point(70, 70);
             this.lAddCustomer.Name = "lAddCustomer";
             this.lAddCustomer.Size = new System.Drawing.Size(222, 32);
             this.lAddCustomer.TabIndex = 4;
@@ -74,7 +74,7 @@
             // cbStaff
             // 
             this.cbStaff.AutoSize = true;
-            this.cbStaff.Location = new System.Drawing.Point(52, 166);
+            this.cbStaff.Location = new System.Drawing.Point(52, 173);
             this.cbStaff.Name = "cbStaff";
             this.cbStaff.Size = new System.Drawing.Size(50, 19);
             this.cbStaff.TabIndex = 8;
@@ -92,6 +92,7 @@
             this.Controls.Add(this.lCustomerName);
             this.Controls.Add(this.lAddCustomer);
             this.Name = "AddCustomer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddCustomer";
             this.Controls.SetChildIndex(this.lAddCustomer, 0);
             this.Controls.SetChildIndex(this.lCustomerName, 0);
