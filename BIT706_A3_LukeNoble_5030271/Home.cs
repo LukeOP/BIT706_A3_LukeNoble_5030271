@@ -21,6 +21,7 @@ namespace BIT706_A3_LukeNoble_5030271
 
         private void LoadDataFromFile()
         {
+            // Checks if bankdata already exists. If not, the instance is recieved through the class.
             if(File.Exists("../../BankData.bin")) control.ReadBinaryData();
             else
             {
