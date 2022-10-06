@@ -15,19 +15,24 @@ namespace BIT706_A3_LukeNoble_5030271
         public ManageCustomers()
         {
             InitializeComponent();
+            DisplayCustomers();
 
             // For development - Create dummy customers
-            PopulateCustomerList();
+            //PopulateCustomerList();
         }
 
         // Refresh listbox by clearing items and adding them again from AllCust list
         public void DisplayCustomers()
         {
             lbCustomers.Items.Clear();
-            foreach (Customer c in control.AllCust)
+            if(control.getCustomerList() != null)
             {
-                lbCustomers.Items.Add(c);
+                foreach (Customer c in control.getCustomerList())
+                {
+                    lbCustomers.Items.Add(c);
+                }
             }
+            
         }
 
         /*

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,17 @@ namespace BIT706_A3_LukeNoble_5030271
         public Home()
         {
             InitializeComponent();
+            LoadDataFromFile();
+        }
+
+        private void LoadDataFromFile()
+        {
+            // Checks if bankdata already exists. If not, the instance is recieved through the class.
+            if(File.Exists("../../BankData.bin")) control.ReadBinaryData();
+            else
+            {
+                BankData.getInstance();
+            }
         }
 
         private void btnManageCustomers_Click_1(object sender, EventArgs e)
@@ -27,11 +39,6 @@ namespace BIT706_A3_LukeNoble_5030271
 
         }
 
-        private void btnQuit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnManageAccounts_Click(object sender, EventArgs e)
         {
             AccountManagement manageAccounts = new AccountManagement();
@@ -39,6 +46,12 @@ namespace BIT706_A3_LukeNoble_5030271
             manageAccounts.ShowDialog();
 
             this.Show();
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            control.WriteBinaryData();
+            this.Close();
         }
     }
 }

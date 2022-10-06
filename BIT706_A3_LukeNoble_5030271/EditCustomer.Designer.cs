@@ -36,7 +36,7 @@
             // 
             // btnEditCustomer
             // 
-            this.btnEditCustomer.Location = new System.Drawing.Point(113, 153);
+            this.btnEditCustomer.Location = new System.Drawing.Point(113, 166);
             this.btnEditCustomer.Name = "btnEditCustomer";
             this.btnEditCustomer.Size = new System.Drawing.Size(155, 38);
             this.btnEditCustomer.TabIndex = 11;
@@ -46,7 +46,7 @@
             // 
             // tbCustomerName
             // 
-            this.tbCustomerName.Location = new System.Drawing.Point(53, 124);
+            this.tbCustomerName.Location = new System.Drawing.Point(53, 137);
             this.tbCustomerName.Name = "tbCustomerName";
             this.tbCustomerName.Size = new System.Drawing.Size(279, 23);
             this.tbCustomerName.TabIndex = 10;
@@ -54,7 +54,7 @@
             // lCustomerName
             // 
             this.lCustomerName.AutoSize = true;
-            this.lCustomerName.Location = new System.Drawing.Point(53, 106);
+            this.lCustomerName.Location = new System.Drawing.Point(53, 119);
             this.lCustomerName.Name = "lCustomerName";
             this.lCustomerName.Size = new System.Drawing.Size(97, 15);
             this.lCustomerName.TabIndex = 9;
@@ -64,7 +64,7 @@
             // 
             this.lEditCustomer.AutoSize = true;
             this.lEditCustomer.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lEditCustomer.Location = new System.Drawing.Point(107, 59);
+            this.lEditCustomer.Location = new System.Drawing.Point(107, 72);
             this.lEditCustomer.Name = "lEditCustomer";
             this.lEditCustomer.Size = new System.Drawing.Size(164, 32);
             this.lEditCustomer.TabIndex = 8;
