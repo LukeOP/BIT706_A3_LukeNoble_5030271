@@ -112,6 +112,7 @@
             this.Controls.Add(this.lbAccountsTo);
             this.Controls.Add(this.lbAccountsFrom);
             this.Name = "AccountTransfer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AccountTransfer";
             this.Controls.SetChildIndex(this.lbAccountsFrom, 0);
             this.Controls.SetChildIndex(this.lbAccountsTo, 0);

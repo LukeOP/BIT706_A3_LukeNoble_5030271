@@ -72,6 +72,7 @@
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnManageCustomers);
             this.Name = "Home";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.Controls.SetChildIndex(this.btnManageCustomers, 0);
             this.Controls.SetChildIndex(this.btnQuit, 0);

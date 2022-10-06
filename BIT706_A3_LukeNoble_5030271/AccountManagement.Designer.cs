@@ -192,6 +192,7 @@
             this.Controls.Add(this.lstAccounts);
             this.Controls.Add(this.btnDeposit);
             this.Name = "AccountManagement";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AccountManagement";
             this.Controls.SetChildIndex(this.btnDeposit, 0);
             this.Controls.SetChildIndex(this.lstAccounts, 0);

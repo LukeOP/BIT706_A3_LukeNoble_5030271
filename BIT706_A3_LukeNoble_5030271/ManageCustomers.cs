@@ -53,8 +53,10 @@ namespace BIT706_A3_LukeNoble_5030271
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             AddCustomer addCust = new AddCustomer();
+            this.Hide();
             addCust.ShowDialog();
 
+            this.Show();
             DisplayCustomers();
 
         }
@@ -65,8 +67,10 @@ namespace BIT706_A3_LukeNoble_5030271
             if (validateCustomerSelected())
             {
                 EditCustomer editCust = new EditCustomer();
+                this.Hide();
                 editCust.ShowDialog();
 
+                this.Show();
                 DisplayCustomers();
             }
         }
@@ -92,8 +96,10 @@ namespace BIT706_A3_LukeNoble_5030271
             if(validateCustomerSelected())
             {
                 AccountManagement accountManagement = new AccountManagement();
+                this.Hide();
                 accountManagement.ShowDialog();
 
+                this.Show();
                 DisplayCustomers();
             }
         }

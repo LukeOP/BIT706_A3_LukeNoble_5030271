@@ -129,8 +129,8 @@ namespace BIT706_A3_LukeNoble_5030271
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
             AddAccount addAccount = new AddAccount();
-            addAccount.ShowDialog();
             this.Hide();
+            addAccount.ShowDialog();
 
             this.Show();
             setCustomerData();
@@ -139,8 +139,8 @@ namespace BIT706_A3_LukeNoble_5030271
         private void btnTransfer_Click(object sender, EventArgs e)
         {
             AccountTransfer transfer = new AccountTransfer();
-            transfer.ShowDialog();
             this.Hide();
+            transfer.ShowDialog();
 
             this.Show();
             DisplayAccounts();

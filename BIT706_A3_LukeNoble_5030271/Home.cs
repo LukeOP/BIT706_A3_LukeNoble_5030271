@@ -20,8 +20,8 @@ namespace BIT706_A3_LukeNoble_5030271
         private void btnManageCustomers_Click_1(object sender, EventArgs e)
         {
             ManageCustomers manageCustomers = new ManageCustomers();
-            manageCustomers.ShowDialog();
             this.Hide();
+            manageCustomers.ShowDialog();
 
             this.Show();
 
@@ -35,8 +35,8 @@ namespace BIT706_A3_LukeNoble_5030271
         private void btnManageAccounts_Click(object sender, EventArgs e)
         {
             AccountManagement manageAccounts = new AccountManagement();
-            manageAccounts.ShowDialog();
             this.Hide();
+            manageAccounts.ShowDialog();
 
             this.Show();
         }

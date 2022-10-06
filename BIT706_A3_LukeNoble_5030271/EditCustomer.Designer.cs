@@ -43,7 +43,6 @@
             this.btnEditCustomer.Text = "Edit Customer";
             this.btnEditCustomer.UseVisualStyleBackColor = true;
             this.btnEditCustomer.Click += new System.EventHandler(this.btnEditCustomer_Click);
-
             // 
             // tbCustomerName
             // 
@@ -81,7 +80,12 @@
             this.Controls.Add(this.lCustomerName);
             this.Controls.Add(this.lEditCustomer);
             this.Name = "EditCustomer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditCustomer";
+            this.Controls.SetChildIndex(this.lEditCustomer, 0);
+            this.Controls.SetChildIndex(this.lCustomerName, 0);
+            this.Controls.SetChildIndex(this.tbCustomerName, 0);
+            this.Controls.SetChildIndex(this.btnEditCustomer, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
