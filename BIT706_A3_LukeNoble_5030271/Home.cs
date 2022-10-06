@@ -21,7 +21,11 @@ namespace BIT706_A3_LukeNoble_5030271
 
         private void LoadDataFromFile()
         {
-            if (File.Exists("../../../BankData.bin")) control.ReadBinaryData();
+            if(File.Exists("../../BankData.bin")) control.ReadBinaryData();
+            else
+            {
+                BankData.getInstance();
+            }
         }
 
         private void btnManageCustomers_Click_1(object sender, EventArgs e)

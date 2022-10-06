@@ -11,20 +11,17 @@ namespace BIT706_A3_LukeNoble_5030271
     {
         private int customerId;
         private string name = "";
-        private static int nextCustomerId = 1;
         private bool isStaff = false;
         private List<Account> allAccounts = new List<Account>();
 
         public string Name { get => name; set => name = value; }
         public int CustomerId { get => customerId; }
-        public int NextCustomerId { get => nextCustomerId; set => nextCustomerId = value; }
         public bool IsStaff { get => isStaff; set => isStaff = value; }
         public List<Account> Accounts { get => allAccounts; }
 
         public Customer()
         {
-            customerId = nextCustomerId;
-            nextCustomerId++;
+            customerId = BankData.NextCustomerId;
         }
 
         public Customer(string customerName) : this()

@@ -25,10 +25,14 @@ namespace BIT706_A3_LukeNoble_5030271
         public void DisplayCustomers()
         {
             lbCustomers.Items.Clear();
-            foreach (Customer c in control.AllCust)
+            if(control.getCustomerList() != null)
             {
-                lbCustomers.Items.Add(c);
+                foreach (Customer c in control.getCustomerList())
+                {
+                    lbCustomers.Items.Add(c);
+                }
             }
+            
         }
 
         /*

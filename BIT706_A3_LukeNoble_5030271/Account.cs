@@ -14,14 +14,12 @@ namespace BIT706_A3_LukeNoble_5030271
         public double Balance { get { return balance; } }
         protected string lastTransaction = "";
         protected string type = "";
-        protected static int nextAccountID = 1;
         protected int accountID;
 
         //Constructors
         protected Account()
         {
-            accountID = nextAccountID;
-            nextAccountID++;
+            accountID = BankData.NextAccountId;
         }
         protected Account(double Balance, string AccountType) : this()
         {

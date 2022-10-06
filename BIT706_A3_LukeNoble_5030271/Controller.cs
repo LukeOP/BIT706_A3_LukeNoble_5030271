@@ -37,7 +37,8 @@ namespace BIT706_A3_LukeNoble_5030271
                     customer.AddAccount(new Everyday(0));
                     customer.AddAccount(new Investment(0, fee, interest));
                     customer.AddAccount(new Omni(0, fee, interest, overdraftLimit));
-                    AllCust.Add(customer);
+                    //AllCust.Add(customer);
+                    addCustomerToList(customer);
                     InfoMessage = "New customer: " + name + " added with customerId of: " + FindCustomerByName(name).CustomerId;
                 }
                 catch
@@ -46,11 +47,20 @@ namespace BIT706_A3_LukeNoble_5030271
                 }
             }
         }
+        public void addCustomerToList(Customer customer)
+        {
+            BankData.AddCustomer(customer);
+        }
+
+        public List<Customer> getCustomerList()
+        {
+            return BankData.AllCustomers;
+        }
 
         // Recieves customer id int and returns Customer object with that CustomerId
         public Customer? FindCustomerById(int value)
         {
-            foreach (Customer customer in AllCust)
+            foreach (Customer customer in getCustomerList())
             {
                 if (customer.CustomerId == value)
                 {
@@ -63,7 +73,7 @@ namespace BIT706_A3_LukeNoble_5030271
         // Recieves customer name string and returns Customer object with that name
         public Customer? FindCustomerByName(string value)
         {
-            foreach (Customer customer in AllCust)
+            foreach (Customer customer in getCustomerList())
             {
                 if (customer.Name == value)
                 {
@@ -186,9 +196,9 @@ namespace BIT706_A3_LukeNoble_5030271
         {
             IFormatter formatter = new BinaryFormatter();
 
-            Stream stream = new FileStream("../../../BankData.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream("../../BankData.bin", FileMode.Create, FileAccess.Write, FileShare.None);
 
-            formatter.Serialize(stream, AllCust);
+            formatter.Serialize(stream, BankData.getInstance());
 
             stream.Close();
         }
@@ -196,8 +206,8 @@ namespace BIT706_A3_LukeNoble_5030271
         public void ReadBinaryData()
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("../../../BankData.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
-            AllCust = (List<Customer>)formatter.Deserialize(stream);
+            Stream stream = new FileStream("../../BankData.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+            BankData.setInstance((BankData)formatter.Deserialize(stream));
             stream.Close();
         }
     }
