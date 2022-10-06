@@ -6,23 +6,25 @@ using System.Threading.Tasks;
 
 namespace BIT706_A3_LukeNoble_5030271
 {
+    [Serializable]
     public class Customer
     {
         private int customerId;
         private string name = "";
-        private static int nextId = 1;
+        private static int nextCustomerId = 1;
         private bool isStaff = false;
         private List<Account> allAccounts = new List<Account>();
 
         public string Name { get => name; set => name = value; }
         public int CustomerId { get => customerId; }
+        public int NextCustomerId { get => nextCustomerId; set => nextCustomerId = value; }
         public bool IsStaff { get => isStaff; set => isStaff = value; }
         public List<Account> Accounts { get => allAccounts; }
 
         public Customer()
         {
-            customerId = nextId;
-            nextId++;
+            customerId = nextCustomerId;
+            nextCustomerId++;
         }
 
         public Customer(string customerName) : this()
@@ -45,7 +47,7 @@ namespace BIT706_A3_LukeNoble_5030271
         }
         public override string ToString()
         {
-            return name;
+            return CustomerId + " " + name;
         }
 
     }

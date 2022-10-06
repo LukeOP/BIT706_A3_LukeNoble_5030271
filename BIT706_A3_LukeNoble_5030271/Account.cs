@@ -7,20 +7,21 @@ using System.Threading.Tasks;
 namespace BIT706_A3_LukeNoble_5030271
 {
     //Account class
-    public abstract class Account : Customer
+    [Serializable]
+    public abstract class Account
     {
         protected double balance;
         public double Balance { get { return balance; } }
         protected string lastTransaction = "";
         protected string type = "";
-        protected static int nextID = 1;
-        protected int iD;
+        protected static int nextAccountID = 1;
+        protected int accountID;
 
         //Constructors
         protected Account()
         {
-            iD = nextID;
-            nextID++;
+            accountID = nextAccountID;
+            nextAccountID++;
         }
         protected Account(double Balance, string AccountType) : this()
         {
@@ -54,6 +55,7 @@ namespace BIT706_A3_LukeNoble_5030271
     /*
      * Everyday Account Class
      */
+    [Serializable]
     public class Everyday : Account
     {
         // Constructor
@@ -68,7 +70,7 @@ namespace BIT706_A3_LukeNoble_5030271
         // returns id, account type and account balance
         public override string ToString()
         {
-            return iD + ": " + type + ": " + balance;
+            return accountID + ": " + type + ": " + balance;
         }
 
         // Checks for available funds, withdraws if successful and sets last transaction, sets error transaction if insufficient funds
@@ -77,14 +79,14 @@ namespace BIT706_A3_LukeNoble_5030271
             if (balance >= amount)
             {
                 balance -= amount;
-                lastTransaction = type + " " + iD + "; withdrawal $" + amount
+                lastTransaction = type + " " + accountID + "; withdrawal $" + amount
                     + "; transaction succeeded; \nNew Balance: $" + balance;
             }
             else
             {
-                lastTransaction = type + " " + iD + "; withdrawal $" + amount
+                lastTransaction = type + " " + accountID + "; withdrawal $" + amount
                     + "; transaction failed";
-                throw new AccountWithdrawlFailedException(type + " " + iD + "; withdrawal $" + amount + "; transaction failed");
+                throw new AccountWithdrawlFailedException(type + " " + accountID + "; withdrawal $" + amount + "; transaction failed");
 
             }
         }
@@ -92,7 +94,7 @@ namespace BIT706_A3_LukeNoble_5030271
         public override void Deposit(double amount)
         {
             balance += amount;
-            lastTransaction = type + " " + iD + "; deposit $" + amount
+            lastTransaction = type + " " + accountID + "; deposit $" + amount
                 + "; \nNew balance: $" + balance;
         }
         // Alerts user that Everyday account cannot add interest, sets last transaction
@@ -111,6 +113,7 @@ namespace BIT706_A3_LukeNoble_5030271
     /*
      * Investment Account Class
      */
+    [Serializable]
     public class Investment : Account
     {
         // initialises attributes
@@ -131,7 +134,7 @@ namespace BIT706_A3_LukeNoble_5030271
         // returns id, account type and account balance
         public override string ToString()
         {
-            return iD + ": " + type + ": " + balance;
+            return accountID + ": " + type + ": " + balance;
         }
         // returns account fee
         public override double Fee()
@@ -152,7 +155,7 @@ namespace BIT706_A3_LukeNoble_5030271
             if (balance >= amount)
             {
                 balance -= amount;
-                lastTransaction = type + " " + iD + "; withdrawal $" + amount
+                lastTransaction = type + " " + accountID + "; withdrawal $" + amount
                     + "; transaction succeeded; \nNew Balance: $" + balance;
             }
             else
@@ -160,9 +163,9 @@ namespace BIT706_A3_LukeNoble_5030271
                 double tempFee = fee;
                 if (isStaff) tempFee = (fee / 2);
                 balance -= tempFee;
-                lastTransaction = type + " " + iD + "; withdrawal $" + amount
+                lastTransaction = type + " " + accountID + "; withdrawal $" + amount
                     + "; transaction failed; fee: $" + tempFee + "; \nNew balance: $" + balance;
-                throw new AccountWithdrawlFailedException(type + " " + iD + "; withdrawal $" + amount
+                throw new AccountWithdrawlFailedException(type + " " + accountID + "; withdrawal $" + amount
                     + "; transaction failed; fee: $" + tempFee + "; \nNew balance: $" + balance);
             }
         }
@@ -170,7 +173,7 @@ namespace BIT706_A3_LukeNoble_5030271
         public override void Deposit(double amount)
         {
             balance += amount;
-            lastTransaction = type + " " + iD + "; deposit $" + amount
+            lastTransaction = type + " " + accountID + "; deposit $" + amount
                 + "; \nNew balance: $" + balance;
         }
         // Calculates and adds interest based on interest rate, sets last transaction
@@ -178,7 +181,7 @@ namespace BIT706_A3_LukeNoble_5030271
         {
             double interest = Math.Round(balance * (interestRate / 100), 2);
             balance += interest;
-            lastTransaction = type + " " + iD + "; Add interest $" + interest + "; balance $" + balance;
+            lastTransaction = type + " " + accountID + "; Add interest $" + interest + "; balance $" + balance;
         }
         public override double AvailableFunds()
         {
@@ -189,6 +192,7 @@ namespace BIT706_A3_LukeNoble_5030271
     /*
      * Omni Account Class
      */
+    [Serializable]
     public class Omni : Account
     {
         // initialises attributes
@@ -211,7 +215,7 @@ namespace BIT706_A3_LukeNoble_5030271
         // returns id, account type and account balance
         public override string ToString()
         {
-            return iD + ": " + type + ": " + balance;
+            return accountID + ": " + type + ": " + balance;
         }
         // returns account fee
         public override double Fee()
@@ -232,7 +236,7 @@ namespace BIT706_A3_LukeNoble_5030271
             if (balance + overdraftLimit >= amount)
             {
                 balance -= amount;
-                lastTransaction = type + " " + iD + "; Overdraft Limit: $" + overdraftLimit + "; withdrawal $" + amount
+                lastTransaction = type + " " + accountID + "; Overdraft Limit: $" + overdraftLimit + "; withdrawal $" + amount
                     + "; transaction succeeded; \nNew Balance: $" + balance;
             }
             else
@@ -240,9 +244,9 @@ namespace BIT706_A3_LukeNoble_5030271
                 double tempFee = fee;
                 if (isStaff) tempFee = (fee / 2);
                 balance -= tempFee;
-                lastTransaction = type + " " + iD + "; Overdraft Limit: $" + overdraftLimit + "; withdrawal $" + amount
+                lastTransaction = type + " " + accountID + "; Overdraft Limit: $" + overdraftLimit + "; withdrawal $" + amount
                     + "; transaction failed; fee: $" + tempFee + "; \nNew balance: $" + balance;
-                throw new AccountWithdrawlFailedException(type + " " + iD + "; Overdraft Limit: $" + overdraftLimit + "; withdrawal $" + amount
+                throw new AccountWithdrawlFailedException(type + " " + accountID + "; Overdraft Limit: $" + overdraftLimit + "; withdrawal $" + amount
                     + "; transaction failed; fee: $" + tempFee + "; \nNew balance: $" + balance);
             }
         }
@@ -250,7 +254,7 @@ namespace BIT706_A3_LukeNoble_5030271
         public override void Deposit(double amount)
         {
             balance += amount;
-            lastTransaction = type + " " + iD + "; deposit $" + amount
+            lastTransaction = type + " " + accountID + "; deposit $" + amount
                 + "; \nNew balance: $" + balance;
         }
         // Calculates and adds interest based on interest rate, sets last transaction
@@ -260,12 +264,12 @@ namespace BIT706_A3_LukeNoble_5030271
             {
                 double interest = Math.Round(balance * (interestRate / 100), 2);
                 balance += interest;
-                lastTransaction = type + " " + iD + "; Add interest $" + interest + "; balance $" + balance;
+                lastTransaction = type + " " + accountID + "; Add interest $" + interest + "; balance $" + balance;
             }
             else
             {
-                MessageBox.Show(type + " " + iD + " Transaction Failed: interest cannot be added when balance is less than 0", "Transaction Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                lastTransaction = type + " " + iD + " Transaction Failed: interest cannot be added when balance is less than 0";
+                MessageBox.Show(type + " " + accountID + " Transaction Failed: interest cannot be added when balance is less than 0", "Transaction Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                lastTransaction = type + " " + accountID + " Transaction Failed: interest cannot be added when balance is less than 0";
             }
 
         }

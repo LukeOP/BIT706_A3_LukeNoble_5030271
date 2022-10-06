@@ -15,9 +15,10 @@ namespace BIT706_A3_LukeNoble_5030271
         public ManageCustomers()
         {
             InitializeComponent();
+            DisplayCustomers();
 
             // For development - Create dummy customers
-            PopulateCustomerList();
+            //PopulateCustomerList();
         }
 
         // Refresh listbox by clearing items and adding them again from AllCust list

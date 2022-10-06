@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -179,6 +181,24 @@ namespace BIT706_A3_LukeNoble_5030271
             {
                 throw new AddAccountFailedException("Unable to create a new account");
             }
+        }
+        public void WriteBinaryData()
+        {
+            IFormatter formatter = new BinaryFormatter();
+
+            Stream stream = new FileStream("../../../BankData.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+
+            formatter.Serialize(stream, AllCust);
+
+            stream.Close();
+        }
+
+        public void ReadBinaryData()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("../../../BankData.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+            AllCust = (List<Customer>)formatter.Deserialize(stream);
+            stream.Close();
         }
     }
 }
