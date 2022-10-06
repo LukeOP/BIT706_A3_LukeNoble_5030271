@@ -41,6 +41,7 @@
             this.lStaffMember = new System.Windows.Forms.Label();
             this.btnTransfer = new System.Windows.Forms.Button();
             this.lErrorMessage = new System.Windows.Forms.Label();
+            this.btnManageCustomers = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnDeposit
@@ -173,11 +174,22 @@
             this.lErrorMessage.TabIndex = 30;
             this.lErrorMessage.Text = "Error Message";
             // 
+            // btnManageCustomers
+            // 
+            this.btnManageCustomers.Location = new System.Drawing.Point(453, 10);
+            this.btnManageCustomers.Name = "btnManageCustomers";
+            this.btnManageCustomers.Size = new System.Drawing.Size(135, 30);
+            this.btnManageCustomers.TabIndex = 31;
+            this.btnManageCustomers.Text = "Manage Customers";
+            this.btnManageCustomers.UseVisualStyleBackColor = true;
+            this.btnManageCustomers.Click += new System.EventHandler(this.btnManageCustomers_Click);
+            // 
             // AccountManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 465);
+            this.Controls.Add(this.btnManageCustomers);
             this.Controls.Add(this.lErrorMessage);
             this.Controls.Add(this.btnTransfer);
             this.Controls.Add(this.lStaffMember);
@@ -206,6 +218,7 @@
             this.Controls.SetChildIndex(this.lStaffMember, 0);
             this.Controls.SetChildIndex(this.btnTransfer, 0);
             this.Controls.SetChildIndex(this.lErrorMessage, 0);
+            this.Controls.SetChildIndex(this.btnManageCustomers, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,5 +239,6 @@
         private Label lStaffMember;
         private Button btnTransfer;
         private Label lErrorMessage;
+        private Button btnManageCustomers;
     }
 }
