@@ -145,5 +145,10 @@ namespace BIT706_A3_LukeNoble_5030271
             this.Show();
             DisplayAccounts();
         }
+
+        private void btnManageCustomers_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

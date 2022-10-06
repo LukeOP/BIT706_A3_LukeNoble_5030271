@@ -35,6 +35,7 @@
             this.tbTransferAmount = new System.Windows.Forms.TextBox();
             this.lTransferLabel = new System.Windows.Forms.Label();
             this.btnTransfer = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbAccountsFrom
@@ -99,11 +100,22 @@
             this.btnTransfer.UseVisualStyleBackColor = true;
             this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(564, 12);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(98, 30);
+            this.btnCancel.TabIndex = 11;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // AccountTransfer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 214);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnTransfer);
             this.Controls.Add(this.lTransferLabel);
             this.Controls.Add(this.tbTransferAmount);
@@ -121,6 +133,7 @@
             this.Controls.SetChildIndex(this.tbTransferAmount, 0);
             this.Controls.SetChildIndex(this.lTransferLabel, 0);
             this.Controls.SetChildIndex(this.btnTransfer, 0);
+            this.Controls.SetChildIndex(this.btnCancel, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,5 +148,6 @@
         private TextBox tbTransferAmount;
         private Label lTransferLabel;
         private Button btnTransfer;
+        private Button btnCancel;
     }
 }
