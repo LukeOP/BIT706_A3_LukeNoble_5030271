@@ -83,7 +83,7 @@ namespace GherkinTests.Features
 testRunner.Given("there is an instance of BankData", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
-testRunner.And("a user exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("a user exists with accounts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
@@ -92,16 +92,16 @@ testRunner.And("a user exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(nul
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Make a deposit into an account")]
+        [Xunit.SkippableFactAttribute(DisplayName="A user can make a deposit into an account")]
         [Xunit.TraitAttribute("FeatureTitle", "Transfers")]
-        [Xunit.TraitAttribute("Description", "Make a deposit into an account")]
+        [Xunit.TraitAttribute("Description", "A user can make a deposit into an account")]
         [Xunit.TraitAttribute("Category", "tag1")]
-        public virtual void MakeADepositIntoAnAccount()
+        public virtual void AUserCanMakeADepositIntoAnAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "tag1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a deposit into an account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user can make a deposit into an account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
