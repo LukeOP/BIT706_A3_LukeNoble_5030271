@@ -12,12 +12,8 @@ namespace GherkinTests.StepDefinitions
         [Given(@"there are no customers")]
         public void GivenThereAreNoCustomers()
         {
-            if (File.Exists("../../BankData.bin")) control.ReadBinaryData();
-            else
-            {
-                BankData.getInstance();
-            }
-            Assert.Equal(BankData.AllCustomers.Count(), 0);
+            BankData.getInstance();
+            BankData.AllCustomers.Clear();
         }
 
         [When(@"I add a new customer")]
@@ -29,7 +25,7 @@ namespace GherkinTests.StepDefinitions
         [Then(@"there will be (.*) customer")]
         public void ThenThereWillBeCustomer(int p0)
         {
-            Assert.Equal(BankData.AllCustomers.Count(), p0);
+            Assert.Equal(p0, BankData.AllCustomers.Count);
         }
     }
 }
