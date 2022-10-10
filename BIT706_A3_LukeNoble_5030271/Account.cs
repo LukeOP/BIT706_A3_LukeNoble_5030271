@@ -11,7 +11,7 @@ namespace BIT706_A3_LukeNoble_5030271
     public abstract class Account
     {
         protected double balance;
-        public double Balance { get { return balance; } }
+        public double Balance { get => balance; set => balance = value; }
         protected string lastTransaction = "";
         protected string type = "";
         protected int accountID;
