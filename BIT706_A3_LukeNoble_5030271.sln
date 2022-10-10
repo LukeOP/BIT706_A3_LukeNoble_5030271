@@ -5,7 +5,9 @@ VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIT706_A3_LukeNoble_5030271", "BIT706_A3_LukeNoble_5030271\BIT706_A3_LukeNoble_5030271.csproj", "{BCA00FC3-0C44-4FF2-9CF9-22CCBEADEB8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GherkinTests", "GherkinTests\GherkinTests.csproj", "{A5C05E59-9CF6-4DC2-B5D5-80B3EDF1A90D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GherkinTests", "GherkinTests\GherkinTests.csproj", "{A5C05E59-9CF6-4DC2-B5D5-80B3EDF1A90D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountUnitTests", "AccountUnitTests\AccountUnitTests.csproj", "{7B251C7A-4397-44B9-8E18-E13830313AF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A5C05E59-9CF6-4DC2-B5D5-80B3EDF1A90D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5C05E59-9CF6-4DC2-B5D5-80B3EDF1A90D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5C05E59-9CF6-4DC2-B5D5-80B3EDF1A90D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B251C7A-4397-44B9-8E18-E13830313AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B251C7A-4397-44B9-8E18-E13830313AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B251C7A-4397-44B9-8E18-E13830313AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B251C7A-4397-44B9-8E18-E13830313AF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
