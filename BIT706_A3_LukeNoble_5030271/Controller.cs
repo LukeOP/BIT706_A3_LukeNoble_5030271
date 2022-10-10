@@ -165,16 +165,6 @@ namespace BIT706_A3_LukeNoble_5030271
 
         public void handleTransfer(Account fromAccount, Account toAccount, double amount)
         {
-            //if (fromAccount.AvailableFunds() >= amount)
-            //{
-            //    fromAccount.Withdraw(amount, cust.IsStaff);
-            //    toAccount.Deposit(amount);
-            //}
-            //else
-            //{
-            //    ErrorMessage = "Insufficient funds to make transfer";
-            //    LastTransaction = ErrorMessage;
-            //}
             try
             {
                 fromAccount.Withdraw(amount, cust.IsStaff);
