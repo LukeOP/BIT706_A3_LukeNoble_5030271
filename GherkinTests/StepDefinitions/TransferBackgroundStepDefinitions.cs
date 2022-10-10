@@ -7,7 +7,9 @@ namespace GherkinTests.StepDefinitions
     [Binding]
     public class TransferBackgroundStepDefinitions
     {
-        Controller control = new Controller();
+        static Controller control = new Controller();
+        public static Controller Controller { get => control; }
+
         [Given(@"there is an instance of BankData")]
         public void GivenThereIsAnInstanceOfBankData()
         {

@@ -114,7 +114,7 @@ testRunner.And("a staff users exists with accounts", ((string)(null)), ((TechTal
             argumentsOfScenario.Add("Amount", amount);
             argumentsOfScenario.Add("Result", result);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Transfer between accounts success", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 89
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -137,20 +137,204 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 90
+#line 12
 testRunner.Given(string.Format("the first account is \"{0}\"", accountOne), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 91
+#line 13
 testRunner.And(string.Format("the second account is \"{0}\"", accountTwo), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 92
+#line 14
 testRunner.And(string.Format("the initial amount of the from account is {0}", initialFrom), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 93
+#line 15
 testRunner.When(string.Format("a transaction of {0} is made", amount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 94
+#line 16
 testRunner.Then(string.Format("the first account balance is {0}", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableTheoryAttribute(DisplayName="Transfer between accounts insufficent funds")]
+        [Xunit.TraitAttribute("FeatureTitle", "Transfers")]
+        [Xunit.TraitAttribute("Description", "Transfer between accounts insufficent funds")]
+        [Xunit.InlineDataAttribute("Everyday", "Investment", "50", "300", new string[0])]
+        [Xunit.InlineDataAttribute("Everyday", "Omni", "60", "500", new string[0])]
+        [Xunit.InlineDataAttribute("Investment", "Everyday", "500", "800", new string[0])]
+        [Xunit.InlineDataAttribute("Investment", "Omni", "50", "350", new string[0])]
+        [Xunit.InlineDataAttribute("Omni", "Everyday", "70", "300", new string[0])]
+        [Xunit.InlineDataAttribute("Omni", "Investment", "10", "500", new string[0])]
+        public virtual void TransferBetweenAccountsInsufficentFunds(string account1, string account2, string initialFrom, string amount, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Account1", account1);
+            argumentsOfScenario.Add("Account2", account2);
+            argumentsOfScenario.Add("InitialFrom", initialFrom);
+            argumentsOfScenario.Add("Amount", amount);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Transfer between accounts insufficent funds", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 29
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 5
+this.FeatureBackground();
+#line hidden
+#line 30
+testRunner.Given(string.Format("the primary account is \"{0}\"", account1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 31
+testRunner.And(string.Format("the secondary account is \"{0}\"", account2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 32
+testRunner.And(string.Format("the initial amount of the primary account is {0}", initialFrom), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 33
+testRunner.When(string.Format("a transfer of {0} is made", amount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 34
+testRunner.Then("an error message is produced", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableTheoryAttribute(DisplayName="Transfers from Omni accounts can occur up to overdraft limit ($100)")]
+        [Xunit.TraitAttribute("FeatureTitle", "Transfers")]
+        [Xunit.TraitAttribute("Description", "Transfers from Omni accounts can occur up to overdraft limit ($100)")]
+        [Xunit.InlineDataAttribute("100", "150", "pass", new string[0])]
+        [Xunit.InlineDataAttribute("100", "200", "pass", new string[0])]
+        [Xunit.InlineDataAttribute("0", "50", "pass", new string[0])]
+        [Xunit.InlineDataAttribute("-50", "50", "pass", new string[0])]
+        [Xunit.InlineDataAttribute("100", "250", "fail", new string[0])]
+        [Xunit.InlineDataAttribute("0", "101", "fail", new string[0])]
+        [Xunit.InlineDataAttribute("-50", "51", "fail", new string[0])]
+        [Xunit.InlineDataAttribute("-100", "1", "fail", new string[0])]
+        public virtual void TransfersFromOmniAccountsCanOccurUpToOverdraftLimit100(string balance, string transfer, string result, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("balance", balance);
+            argumentsOfScenario.Add("transfer", transfer);
+            argumentsOfScenario.Add("result", result);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Transfers from Omni accounts can occur up to overdraft limit ($100)", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 46
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 5
+this.FeatureBackground();
+#line hidden
+#line 47
+testRunner.Given(string.Format("an Omni account has a balance or {0}", balance), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 48
+testRunner.When(string.Format("a transfer of {0} is attempted", transfer), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 49
+testRunner.Then(string.Format("the transfer will \"{0}\"", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableTheoryAttribute(DisplayName="A fee is charged on appropriate accounts and staff recieve a 50% reduction in fee" +
+            "s")]
+        [Xunit.TraitAttribute("FeatureTitle", "Transfers")]
+        [Xunit.TraitAttribute("Description", "A fee is charged on appropriate accounts and staff recieve a 50% reduction in fee" +
+            "s")]
+        [Xunit.InlineDataAttribute("not_staff", "Everyday", "50", "100", "50", new string[0])]
+        [Xunit.InlineDataAttribute("not_staff", "Everyday", "0", "100", "0", new string[0])]
+        [Xunit.InlineDataAttribute("not_staff", "Investment", "50", "100", "40", new string[0])]
+        [Xunit.InlineDataAttribute("not_staff", "Investment", "0", "100", "-10", new string[0])]
+        [Xunit.InlineDataAttribute("not_staff", "Omni", "50", "200", "40", new string[0])]
+        [Xunit.InlineDataAttribute("not_staff", "Omni", "0", "200", "-10", new string[0])]
+        [Xunit.InlineDataAttribute("not_staff", "Omni", "-100", "100", "-110", new string[0])]
+        [Xunit.InlineDataAttribute("staff", "Everyday", "50", "100", "50", new string[0])]
+        [Xunit.InlineDataAttribute("staff", "Everyday", "0", "100", "0", new string[0])]
+        [Xunit.InlineDataAttribute("staff", "Investment", "50", "100", "45", new string[0])]
+        [Xunit.InlineDataAttribute("staff", "Investment", "0", "100", "-5", new string[0])]
+        [Xunit.InlineDataAttribute("staff", "Omni", "50", "200", "45", new string[0])]
+        [Xunit.InlineDataAttribute("staff", "Omni", "0", "200", "-5", new string[0])]
+        [Xunit.InlineDataAttribute("staff", "Omni", "-100", "100", "-105", new string[0])]
+        public virtual void AFeeIsChargedOnAppropriateAccountsAndStaffRecieveA50ReductionInFees(string state, string account_1, string value_1, string value_2, string remaining, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("state", state);
+            argumentsOfScenario.Add("account_1", account_1);
+            argumentsOfScenario.Add("value_1", value_1);
+            argumentsOfScenario.Add("value_2", value_2);
+            argumentsOfScenario.Add("remaining", remaining);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A fee is charged on appropriate accounts and staff recieve a 50% reduction in fee" +
+                    "s", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 62
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 5
+this.FeatureBackground();
+#line hidden
+#line 63
+testRunner.Given(string.Format("the customer is \"{0}\"", state), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 64
+testRunner.And(string.Format("that they have an \"{0}\" with a balance of {1}", account_1, value_1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 65
+testRunner.When(string.Format("a transfer of {0} fails", value_2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 66
+testRunner.Then(string.Format("the remaining balance is {0}", remaining), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

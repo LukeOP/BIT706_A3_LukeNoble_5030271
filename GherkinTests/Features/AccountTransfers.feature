@@ -24,76 +24,60 @@ Examples:
 | Omni       | Everyday   | 70			| 30     | 40     |
 | Omni       | Investment | 10          | 5      | 5      |
 
-#Scenario Outline: Transfer between accounts insufficent funds
-#Given the first account is "[string]"
-#And the second account is "[string]"
-#And the initial amount of the from account is [int]
-#When a transaction of <Amount> is made
-#Then an error message is produced
 
 
-#Scenario: An Error message is procuced for Failed transfer insuficient funds (Everyday).	
-#	Given an Everyday account to transfer from has 10 dollars
-#	And the account is not an omni account
-#	When a transfer of 50 dollars is attempted
-#	Then an error message is produced
-#
-#Scenario: An Error message is procuced for Failed transfer insuficient funds (Investment).	
-#	Given an Investment account to transfer from has 10 dollars
-#	And the account is an Investment account
-#	When a transfer of 50 dollars is attempted
-#	Then an error message is produced#Scenario: A user can make a deposit into an account
-#	Given an account is selected
-#	When a deposit of 10 is made
-#	Then the balance has increased by 10
-#
-#Scenario: Successful transfer amount from one account to another
-#	Given an account to transfer from has 100 dollars
-#	And  and account to transfer to has 50 dollars
-#	When a transfer of 30 dollars occurs
-#	Then the from account balance will be 70 dollars
-#	And the to account will be 80 dollars
-#
-#Scenario: An Error message is procuced for Failed transfer insuficient funds (Everyday).	
-#	Given an Everyday account to transfer from has 10 dollars
-#	And the account is not an omni account
-#	When a transfer of 50 dollars is attempted
-#	Then an error message is produced
-#
-#Scenario: An Error message is procuced for Failed transfer insuficient funds (Investment).	
-#	Given an Investment account to transfer from has 10 dollars
-#	And the account is an Investment account
-#	When a transfer of 50 dollars is attempted
-#	Then an error message is produced
+Scenario Outline: Transfer between accounts insufficent funds
+Given the primary account is "<Account1>"
+And the secondary account is "<Account2>"
+And the initial amount of the primary account is <InitialFrom>
+When a transfer of <Amount> is made
+Then an error message is produced
 
-#Scenario: A Fee is not charged on Everyday accounts with failed transfer	
-#	Given an everyday account to transfer from has 20 dollars
-#	When a transfer of 50 dollars is attempted
-#	Then the everyday account will still have a balance of 20 dollars
-#
-#Scenario: A Fee is charged on omni accounts with failed transfer	
-#	Given an omni account to transfer from has 20 dollars
-#	When a transfer of 50 dollars is attempted
-#	Then the omni account will only have a balance of 10 dollars
-#
-#Scenario: A Fee is charged on Investment accounts with failed transfer	
-#	Given an investment account to transfer from has 20 dollars
-#	When a transfer of 50 dollars is attempted
-#	Then the omni account will only have a balance of 10 dollars
-#
-#Scenario: A Fee is charged on omni accounts with failed transfer (Staff)
-#	Given there is a customer who is also a staff member
-#	And their omni account to transfer from has 20 dollars
-#	When a transfer of 500 dollars is attempted
-#	Then the omni account will only have a balance of 15 dollars
-#
-#Scenario: A Fee is charged on Investment accounts with failed transfer (Staff)
-#	Given there is a customer who is also a staff member
-#	And  their investment account to transfer from has 20 dollars
-#	When a transfer of 50 dollars is attempted
-#	Then the omni account will only have a balance of 15 dollars
-#
-#Scenario: Omni account transfer into negative values (Overdraft)
-#	Given an Omni account to transfer from has 10 dollars
-#	When a transfer of 50 dollars is attempted
-#	Then the omni account will have -40 dollars
+Examples: 
+| Account1   | Account2   | InitialFrom | Amount |
+| Everyday   | Investment | 50          | 300    |
+| Everyday   | Omni       | 60          | 500    |
+| Investment | Everyday   | 500         | 800    |
+| Investment | Omni       | 50          | 350    |
+| Omni       | Everyday   | 70          | 300    |
+| Omni       | Investment | 10          | 500    |
+
+
+Scenario Outline: Transfers from Omni accounts can occur up to overdraft limit ($100)
+Given an Omni account has a balance or <balance>
+When a transfer of <transfer> is attempted
+Then the transfer will "<result>"
+
+Examples: 
+| balance | transfer | result |
+| 100     | 150      | pass   |
+| 100     | 200      | pass   |
+| 0       | 50       | pass   |
+| -50     | 50       | pass   |
+| 100     | 250      | fail   |
+| 0       | 101      | fail   |
+| -50     | 51       | fail   |
+| -100    | 1        | fail   |
+
+Scenario Outline: A fee is charged on appropriate accounts and staff recieve a 50% reduction in fees
+Given the customer is "<state>"
+And that they have an "<account_1>" with a balance of <value_1>
+When a transfer of <value_2> fails
+Then the remaining balance is <remaining>
+
+Examples: 
+| state     | account_1  | value_1 | value_2 | remaining |
+| not_staff | Everyday   | 50      | 100     | 50        |
+| not_staff | Everyday   | 0       | 100     | 0         |
+| not_staff | Investment | 50      | 100     | 40        |
+| not_staff | Investment | 0       | 100     | -10       |
+| not_staff | Omni       | 50      | 200     | 40        |
+| not_staff | Omni       | 0       | 200     | -10       |
+| not_staff | Omni       | -100    | 100     | -110      |
+| staff     | Everyday   | 50      | 100     | 50        |
+| staff     | Everyday   | 0       | 100     | 0         |
+| staff     | Investment | 50      | 100     | 45        |
+| staff     | Investment | 0       | 100     | -5        |
+| staff     | Omni       | 50      | 200     | 45        |
+| staff     | Omni       | 0       | 200     | -5        |
+| staff     | Omni       | -100    | 100     | -105      |
