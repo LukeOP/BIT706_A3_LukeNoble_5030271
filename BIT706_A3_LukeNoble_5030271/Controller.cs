@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace BIT706_A3_LukeNoble_5030271
 {
+    /// <summary>
+    /// Groups methods relating to the creation and editing of customers and accounts.
+    /// Also handles methods relating to loading and saving binary data to file
+    /// </summary>
     public class Controller
     {
         public string? ErrorMessage { get; set; }
@@ -20,7 +24,11 @@ namespace BIT706_A3_LukeNoble_5030271
         public Customer? cust { get; set; }
         public List<Customer> AllCust = new List<Customer>();
 
-        // Create new Customer and add to AllCust list. Create info or error messages
+        /// <summary>
+        /// Creates a new customer with three accounts and adds the customer object to the list of customers
+        /// </summary>
+        /// <param name="name">The name of the new customer</param>
+        /// <param name="staffMember">whether they are a staff member or not (true/false)</param>
         public void CreateCustomer(string name, bool staffMember)
         {
 
@@ -37,7 +45,6 @@ namespace BIT706_A3_LukeNoble_5030271
                     customer.AddAccount(new Everyday(0));
                     customer.AddAccount(new Investment(0, fee, interest));
                     customer.AddAccount(new Omni(0, fee, interest, overdraftLimit));
-                    //AllCust.Add(customer);
                     addCustomerToList(customer);
                     InfoMessage = "New customer: " + name + " added with customerId of: " + FindCustomerByName(name).CustomerId;
                 }
@@ -47,17 +54,28 @@ namespace BIT706_A3_LukeNoble_5030271
                 }
             }
         }
+        /// <summary>
+        /// Adds Customer to BankData Customer list
+        /// </summary>
+        /// <param name="customer">Customer object</param>
         public void addCustomerToList(Customer customer)
         {
             BankData.AddCustomer(customer);
         }
-
+        /// <summary>
+        /// Gets a list of all customers
+        /// </summary>
+        /// <returns>AllCustomers List</returns>
         public List<Customer> getCustomerList()
         {
             return BankData.AllCustomers;
         }
 
-        // Recieves customer id int and returns Customer object with that CustomerId
+        /// <summary>
+        /// Uses customer id to search for matching customer in customer list
+        /// </summary>
+        /// <param name="value">Customer Id value</param>
+        /// <returns>Customer object with matching id or null</returns>
         public Customer? FindCustomerById(int value)
         {
             foreach (Customer customer in getCustomerList())
@@ -70,7 +88,11 @@ namespace BIT706_A3_LukeNoble_5030271
             return null;
         }
 
-        // Recieves customer name string and returns Customer object with that name
+        /// <summary>
+        /// Users customer name to search for matching customer in customer list
+        /// </summary>
+        /// <param name="value">Customer name</param>
+        /// <returns>Customer object with matching name or null</returns>
         public Customer? FindCustomerByName(string value)
         {
             foreach (Customer customer in getCustomerList())
@@ -83,7 +105,11 @@ namespace BIT706_A3_LukeNoble_5030271
             return null;
         }
 
-        // Receives customer object and name. Attempts to update customer's name. Creates appropriate return message
+        /// <summary>
+        /// Updates customer name
+        /// </summary>
+        /// <param name="cust">Customer object being edited (taken from cust in Controller class)</param>
+        /// <param name="name">New name for customer</param>
         public void EditCustomer(Customer cust, string name)
         {
             ResetMessages();
@@ -106,7 +132,10 @@ namespace BIT706_A3_LukeNoble_5030271
 
         }
 
-        // Receives customer object. Attempts to delete customer. Creates appropriate return message
+        /// <summary>
+        /// removes a customer from the AllCustomers list
+        /// </summary>
+        /// <param name="cust">Customer object to be removed</param>
         public void DeleteCustomer(Customer cust)
         {
             ResetMessages();
@@ -121,19 +150,29 @@ namespace BIT706_A3_LukeNoble_5030271
             }
         }
 
-        // Resets all message types to avoid error messages enduring on UI
+        /// <summary>
+        /// Resets all messages to null
+        /// </summary>
         public void ResetMessages()
         {
             InfoMessage = "";
             ErrorMessage = "";
         }
-
+        /// <summary>
+        /// deposits an amount into a customers account
+        /// </summary>
+        /// <param name="acc">Account Object recieving deposit</param>
+        /// <param name="amount">the amount to be deposited</param>
         public void deposit(Account acc, double amount)
         {
             acc.Deposit(amount);
             LastTransaction = acc.GetLastTransaction();
         }
-
+        /// <summary>
+        /// Attempts to withdraw an amount from a selected account. Creates error message if failed
+        /// </summary>
+        /// <param name="acc">The selected account to withdraw from</param>
+        /// <param name="amount">The ammount to be withdrawn</param>
         public void withdraw(Account acc, double amount)
         {
             try
@@ -149,6 +188,10 @@ namespace BIT706_A3_LukeNoble_5030271
             }
             
         }
+        /// <summary>
+        /// Adds interest on selected account based on accounts interest rate.
+        /// </summary>
+        /// <param name="acc">The selected account to gain interest</param>
         public void addInterest(Account acc)
         {
             try
@@ -162,7 +205,12 @@ namespace BIT706_A3_LukeNoble_5030271
                 LastTransaction = ex.Message;
             }
         }
-
+        /// <summary>
+        /// Handles the transfer of funds from one account to another. By running the withdraw and deposit methods
+        /// </summary>
+        /// <param name="fromAccount">the account to transfer funds from</param>
+        /// <param name="toAccount">the account to transfer funds to</param>
+        /// <param name="amount">The amount to be transfered</param>
         public void handleTransfer(Account fromAccount, Account toAccount, double amount)
         {
             try
@@ -177,11 +225,19 @@ namespace BIT706_A3_LukeNoble_5030271
             }
 
         }
+        /// <summary>
+        /// Gets the last transaction string data
+        /// </summary>
+        /// <returns>The last transaction string</returns>
         public string getLastTransaction()
         {
             return LastTransaction;
         }
-
+        /// <summary>
+        /// Adds an account based on the selected account type to the existing customer reference (Controller.cust)
+        /// </summary>
+        /// <param name="accountType">The account type string description</param>
+        /// <exception cref="AddAccountFailedException">Thrown if an account failed to be created</exception>
         public void addAccount(string accountType)
         {
             if (accountType == "Everyday Account") cust.AddAccount(new Everyday(0));
@@ -192,6 +248,9 @@ namespace BIT706_A3_LukeNoble_5030271
                 throw new AddAccountFailedException("Unable to create a new account");
             }
         }
+        /// <summary>
+        /// Writed BankData to a binary file on application close
+        /// </summary>
         public void WriteBinaryData()
         {
             IFormatter formatter = new BinaryFormatter();
@@ -203,6 +262,9 @@ namespace BIT706_A3_LukeNoble_5030271
             stream.Close();
         }
 
+        /// <summary>
+        /// reads and loads BankData from binary file on application start
+        /// </summary>
         public void ReadBinaryData()
         {
             IFormatter formatter = new BinaryFormatter();
