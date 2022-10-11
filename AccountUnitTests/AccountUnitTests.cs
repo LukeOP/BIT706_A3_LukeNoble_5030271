@@ -149,5 +149,13 @@ namespace AccountUnitTests
         {
             Assert.ThrowsException<AccountAddInterestFailedException>(() => AccountEveryday.AddInterest());
         }
+
+        [TestMethod]
+        public void Delete_Customer()
+        {
+            control.CreateCustomer("stuart", false);
+            Customer thisCustomer = control.FindCustomerByName("stuart");
+            control.DeleteCustomer(thisCustomer);
+        }
     }
 }

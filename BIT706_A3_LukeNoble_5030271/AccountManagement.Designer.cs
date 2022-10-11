@@ -42,6 +42,7 @@
             this.btnTransfer = new System.Windows.Forms.Button();
             this.lErrorMessage = new System.Windows.Forms.Label();
             this.btnManageCustomers = new System.Windows.Forms.Button();
+            this.lInfoMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnDeposit
@@ -81,6 +82,7 @@
             this.tbAmount.Size = new System.Drawing.Size(178, 23);
             this.tbAmount.TabIndex = 20;
             this.tbAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAmount_KeyPress);
             // 
             // label3
             // 
@@ -104,7 +106,7 @@
             // btnWithdraw
             // 
             this.btnWithdraw.BackColor = System.Drawing.Color.Gold;
-            this.btnWithdraw.Location = new System.Drawing.Point(225, 193);
+            this.btnWithdraw.Location = new System.Drawing.Point(409, 155);
             this.btnWithdraw.Name = "btnWithdraw";
             this.btnWithdraw.Size = new System.Drawing.Size(178, 35);
             this.btnWithdraw.TabIndex = 23;
@@ -115,7 +117,7 @@
             // btnCalculateInterest
             // 
             this.btnCalculateInterest.BackColor = System.Drawing.Color.Gold;
-            this.btnCalculateInterest.Location = new System.Drawing.Point(410, 155);
+            this.btnCalculateInterest.Location = new System.Drawing.Point(409, 191);
             this.btnCalculateInterest.Name = "btnCalculateInterest";
             this.btnCalculateInterest.Size = new System.Drawing.Size(178, 35);
             this.btnCalculateInterest.TabIndex = 25;
@@ -136,7 +138,7 @@
             // btnAddAccount
             // 
             this.btnAddAccount.BackColor = System.Drawing.Color.Gold;
-            this.btnAddAccount.Location = new System.Drawing.Point(225, 232);
+            this.btnAddAccount.Location = new System.Drawing.Point(225, 227);
             this.btnAddAccount.Name = "btnAddAccount";
             this.btnAddAccount.Size = new System.Drawing.Size(178, 35);
             this.btnAddAccount.TabIndex = 27;
@@ -156,7 +158,7 @@
             // btnTransfer
             // 
             this.btnTransfer.BackColor = System.Drawing.Color.Gold;
-            this.btnTransfer.Location = new System.Drawing.Point(410, 232);
+            this.btnTransfer.Location = new System.Drawing.Point(225, 191);
             this.btnTransfer.Name = "btnTransfer";
             this.btnTransfer.Size = new System.Drawing.Size(178, 35);
             this.btnTransfer.TabIndex = 29;
@@ -184,11 +186,22 @@
             this.btnManageCustomers.UseVisualStyleBackColor = true;
             this.btnManageCustomers.Click += new System.EventHandler(this.btnManageCustomers_Click);
             // 
+            // lInfoMessage
+            // 
+            this.lInfoMessage.AutoSize = true;
+            this.lInfoMessage.ForeColor = System.Drawing.Color.Black;
+            this.lInfoMessage.Location = new System.Drawing.Point(13, 409);
+            this.lInfoMessage.Name = "lInfoMessage";
+            this.lInfoMessage.Size = new System.Drawing.Size(77, 15);
+            this.lInfoMessage.TabIndex = 32;
+            this.lInfoMessage.Text = "Info Message";
+            // 
             // AccountManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 465);
+            this.Controls.Add(this.lInfoMessage);
             this.Controls.Add(this.btnManageCustomers);
             this.Controls.Add(this.lErrorMessage);
             this.Controls.Add(this.btnTransfer);
@@ -220,6 +233,7 @@
             this.Controls.SetChildIndex(this.btnTransfer, 0);
             this.Controls.SetChildIndex(this.lErrorMessage, 0);
             this.Controls.SetChildIndex(this.btnManageCustomers, 0);
+            this.Controls.SetChildIndex(this.lInfoMessage, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,5 +255,6 @@
         private Button btnTransfer;
         private Label lErrorMessage;
         private Button btnManageCustomers;
+        private Label lInfoMessage;
     }
 }
