@@ -15,14 +15,34 @@ namespace BIT706_A3_LukeNoble_5030271
     /// </summary>
     public class Controller
     {
+        /// <summary>
+        /// An error message string to be updated when errors occur and can be displayed to user.
+        /// </summary>
         public string? ErrorMessage { get; set; }
+        /// <summary>
+        /// An info message string to be updated when messages are available to display to the user.
+        /// </summary>
         public string? InfoMessage { get; set; }
+        /// <summary>
+        /// The fee for a failed transaction (Staff receive 50% discount)
+        /// </summary>
         protected double fee = 10;
+        /// <summary>
+        /// The current interest rate in whole percentages
+        /// </summary>
         protected double interest = 4; // 4%
+        /// <summary>
+        /// The overdraft limit on overdraft accounts (Currently only Omni accounts)
+        /// </summary>
         protected double overdraftLimit = 100;
+        /// <summary>
+        /// A record of the last transaction
+        /// </summary>
         protected string? LastTransaction { get; set; }
+        /// <summary>
+        /// The currently selected customer object
+        /// </summary>
         public Customer? cust { get; set; }
-        public List<Customer> AllCust = new List<Customer>();
 
         /// <summary>
         /// Creates a new customer with three accounts and adds the customer object to the list of customers
@@ -122,7 +142,7 @@ namespace BIT706_A3_LukeNoble_5030271
                 try
                 {
                     cust.Name = name;
-                    InfoMessage = cust.Name + "'s name has been edited";
+                    InfoMessage = cust.Name + " has been edited";
                 }
                 catch
                 {
@@ -135,14 +155,14 @@ namespace BIT706_A3_LukeNoble_5030271
         /// <summary>
         /// removes a customer from the AllCustomers list
         /// </summary>
-        /// <param name="cust">Customer object to be removed</param>
-        public void DeleteCustomer(Customer cust)
+        /// <param name="customer">Customer object to be removed</param>
+        public void DeleteCustomer(Customer customer)
         {
             ResetMessages();
             try
             {
-                AllCust.Remove(cust);
-                InfoMessage = "Customer \'" + cust.Name + "\' has been deleted.";
+                BankData.AllCustomers.Remove(customer);
+                InfoMessage = "Customer \'" + customer.Name + "\' has been deleted.";
             }
             catch
             {

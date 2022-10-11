@@ -18,7 +18,7 @@ namespace BIT706_A3_LukeNoble_5030271
             DisplayCustomers();
 
             // For development - Create dummy customers
-            //PopulateCustomerList();
+            PopulateCustomerList();
         }
 
         // Refresh listbox by clearing items and adding them again from AllCust list
@@ -40,7 +40,7 @@ namespace BIT706_A3_LukeNoble_5030271
          */
         public void PopulateCustomerList()
         {
-            if (control.AllCust.Count == 0)
+            if (BankData.AllCustomers.Count == 0)
             {
                 control.CreateCustomer("James Wilson", false);
                 control.CreateCustomer("Sam Clive", false);

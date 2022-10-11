@@ -80,6 +80,7 @@
             this.tbTransferAmount.Name = "tbTransferAmount";
             this.tbTransferAmount.Size = new System.Drawing.Size(180, 23);
             this.tbTransferAmount.TabIndex = 8;
+            this.tbTransferAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTransferAmount_KeyPress);
             // 
             // lTransferLabel
             // 

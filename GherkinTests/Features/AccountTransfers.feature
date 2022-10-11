@@ -7,7 +7,7 @@ Given there is an instance of BankData
 And a user exists with accounts
 And a staff users exists with accounts
 
-
+@transfer_success
 Scenario Outline: Transfer between accounts success
 Given the first account is "<AccountOne>"
 And the second account is "<AccountTwo>"
@@ -25,7 +25,7 @@ Examples:
 | Omni       | Investment | 10          | 5      | 5      |
 
 
-
+@transfer_failed_insufficient_funds
 Scenario Outline: Transfer between accounts insufficent funds
 Given the primary account is "<Account1>"
 And the secondary account is "<Account2>"
@@ -42,7 +42,7 @@ Examples:
 | Omni       | Everyday   | 70          | 300    |
 | Omni       | Investment | 10          | 500    |
 
-
+@transfer_Overdraft
 Scenario Outline: Transfers from Omni accounts can occur up to overdraft limit ($100)
 Given an Omni account has a balance or <balance>
 When a transfer of <transfer> is attempted
@@ -59,6 +59,7 @@ Examples:
 | -50     | 51       | fail   |
 | -100    | 1        | fail   |
 
+@transfer_fees_on_Failure
 Scenario Outline: A fee is charged on appropriate accounts and staff recieve a 50% reduction in fees
 Given the customer is "<state>"
 And that they have an "<account_1>" with a balance of <value_1>
