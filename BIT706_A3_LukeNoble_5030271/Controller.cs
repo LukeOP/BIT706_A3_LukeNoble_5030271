@@ -15,14 +15,7 @@ namespace BIT706_A3_LukeNoble_5030271
     /// </summary>
     public class Controller
     {
-        /// <summary>
-        /// An error message string to be updated when errors occur and can be displayed to user.
-        /// </summary>
-        public string? ErrorMessage { get; set; }
-        /// <summary>
-        /// An info message string to be updated when messages are available to display to the user.
-        /// </summary>
-        public string? InfoMessage { get; set; }
+        
         /// <summary>
         /// The fee for a failed transaction (Staff receive 50% discount)
         /// </summary>
@@ -35,6 +28,14 @@ namespace BIT706_A3_LukeNoble_5030271
         /// The overdraft limit on overdraft accounts (Currently only Omni accounts)
         /// </summary>
         protected double overdraftLimit = 100;
+        /// <summary>
+        /// An error message string to be updated when errors occur and can be displayed to user.
+        /// </summary>
+        public string? ErrorMessage { get; set; }
+        /// <summary>
+        /// An info message string to be updated when messages are available to display to the user.
+        /// </summary>
+        public string? InfoMessage { get; set; }
         /// <summary>
         /// A record of the last transaction
         /// </summary>
@@ -130,7 +131,8 @@ namespace BIT706_A3_LukeNoble_5030271
         /// </summary>
         /// <param name="cust">Customer object being edited (taken from cust in Controller class)</param>
         /// <param name="name">New name for customer</param>
-        public void EditCustomer(Customer cust, string name)
+        /// <param name="staff">Boolean value of if customer is a staff member</param>
+        public void EditCustomer(Customer cust, string name, bool staff)
         {
             ResetMessages();
             if (name.Any(char.IsDigit))
@@ -141,8 +143,8 @@ namespace BIT706_A3_LukeNoble_5030271
             {
                 try
                 {
-                    cust.Name = name;
-                    InfoMessage = cust.Name + " has been edited";
+                    cust.EditCustomer(name, staff);
+                    InfoMessage = "Customer profile updated for " + name;
                 }
                 catch
                 {

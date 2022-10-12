@@ -32,11 +32,12 @@
             this.tbCustomerName = new System.Windows.Forms.TextBox();
             this.lCustomerName = new System.Windows.Forms.Label();
             this.lEditCustomer = new System.Windows.Forms.Label();
+            this.cbStaff = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnEditCustomer
             // 
-            this.btnEditCustomer.Location = new System.Drawing.Point(113, 166);
+            this.btnEditCustomer.Location = new System.Drawing.Point(177, 168);
             this.btnEditCustomer.Name = "btnEditCustomer";
             this.btnEditCustomer.Size = new System.Drawing.Size(155, 38);
             this.btnEditCustomer.TabIndex = 11;
@@ -50,6 +51,7 @@
             this.tbCustomerName.Name = "tbCustomerName";
             this.tbCustomerName.Size = new System.Drawing.Size(279, 23);
             this.tbCustomerName.TabIndex = 10;
+            this.tbCustomerName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCustomerName_KeyPress);
             // 
             // lCustomerName
             // 
@@ -70,11 +72,22 @@
             this.lEditCustomer.TabIndex = 8;
             this.lEditCustomer.Text = "Edit Customer";
             // 
+            // cbStaff
+            // 
+            this.cbStaff.AutoSize = true;
+            this.cbStaff.Location = new System.Drawing.Point(53, 179);
+            this.cbStaff.Name = "cbStaff";
+            this.cbStaff.Size = new System.Drawing.Size(50, 19);
+            this.cbStaff.TabIndex = 12;
+            this.cbStaff.Text = "Staff";
+            this.cbStaff.UseVisualStyleBackColor = true;
+            // 
             // EditCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(368, 218);
+            this.Controls.Add(this.cbStaff);
             this.Controls.Add(this.btnEditCustomer);
             this.Controls.Add(this.tbCustomerName);
             this.Controls.Add(this.lCustomerName);
@@ -86,6 +99,7 @@
             this.Controls.SetChildIndex(this.lCustomerName, 0);
             this.Controls.SetChildIndex(this.tbCustomerName, 0);
             this.Controls.SetChildIndex(this.btnEditCustomer, 0);
+            this.Controls.SetChildIndex(this.cbStaff, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,5 +111,6 @@
         private TextBox tbCustomerName;
         private Label lCustomerName;
         private Label lEditCustomer;
+        private CheckBox cbStaff;
     }
 }

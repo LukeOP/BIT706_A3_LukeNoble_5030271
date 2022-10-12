@@ -23,12 +23,23 @@ namespace BIT706_A3_LukeNoble_5030271
         {
             customerName = control.cust.Name;
             tbCustomerName.Text = customerName;
+            cbStaff.Checked = control.cust.IsStaff;
         }
 
         private void btnEditCustomer_Click(object sender, EventArgs e)
         {
-            control.EditCustomer(control.cust, tbCustomerName.Text);
+            control.EditCustomer(control.cust, tbCustomerName.Text, cbStaff.Checked);
+            if(control.ErrorMessage.Length > 0) MessageBox.Show(control.ErrorMessage, "Customer Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if(control.InfoMessage.Length > 0) MessageBox.Show(control.InfoMessage, "Customer Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
+        }
+
+        private void tbCustomerName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

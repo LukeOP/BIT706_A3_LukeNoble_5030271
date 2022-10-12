@@ -34,9 +34,10 @@ namespace BIT706_A3_LukeNoble_5030271
             isStaff = IsStaff;
         }
 
-        public void EditCustomer(string newName)
+        public void EditCustomer(string newName, bool staff)
         {
             name = newName;
+            isStaff = staff;
         }
         public void AddAccount(Account account)
         {

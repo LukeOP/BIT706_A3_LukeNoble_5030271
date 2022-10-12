@@ -124,6 +124,7 @@ namespace BIT706_A3_LukeNoble_5030271
         {
             control.ResetMessages();
             lErrorMessage.Text = control.ErrorMessage;
+            lInfoMessage.Text = control.InfoMessage;
         }
 
         private void btnAddAccount_Click(object sender, EventArgs e)
