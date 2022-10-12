@@ -142,9 +142,8 @@ namespace BIT706_A3_LukeNoble_5030271
             {
                 try
                 {
-                    cust.Name = name;
-                    cust.IsStaff = staff;
-                    InfoMessage = cust.Name + " has been edited";
+                    cust.EditCustomer(name, staff);
+                    InfoMessage = "Customer profile updated for " + name;
                 }
                 catch
                 {

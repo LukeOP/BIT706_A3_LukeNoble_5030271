@@ -29,7 +29,8 @@ namespace BIT706_A3_LukeNoble_5030271
         private void btnEditCustomer_Click(object sender, EventArgs e)
         {
             control.EditCustomer(control.cust, tbCustomerName.Text, cbStaff.Checked);
-            MessageBox.Show("Customer profile updated for " + customerName, "Customer Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if(control.ErrorMessage.Length > 0) MessageBox.Show(control.ErrorMessage, "Customer Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if(control.InfoMessage.Length > 0) MessageBox.Show(control.InfoMessage, "Customer Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
     }
