@@ -23,11 +23,13 @@ namespace BIT706_A3_LukeNoble_5030271
         {
             customerName = control.cust.Name;
             tbCustomerName.Text = customerName;
+            cbStaff.Checked = control.cust.IsStaff;
         }
 
         private void btnEditCustomer_Click(object sender, EventArgs e)
         {
-            control.EditCustomer(control.cust, tbCustomerName.Text);
+            control.EditCustomer(control.cust, tbCustomerName.Text, cbStaff.Checked);
+            MessageBox.Show("Customer profile updated for " + customerName, "Customer Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
     }
