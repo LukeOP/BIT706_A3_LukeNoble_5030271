@@ -33,5 +33,13 @@ namespace BIT706_A3_LukeNoble_5030271
             if(control.InfoMessage.Length > 0) MessageBox.Show(control.InfoMessage, "Customer Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
+
+        private void tbCustomerName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

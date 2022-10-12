@@ -19,8 +19,24 @@ namespace BIT706_A3_LukeNoble_5030271
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            control.CreateCustomer(tbCustomerName.Text, cbStaff.Checked);
-            this.Close();
+            if(tbCustomerName.Text.Length > 3)
+            {
+                control.CreateCustomer(tbCustomerName.Text, cbStaff.Checked);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("The customer name chosen is too short. Are you sure you entered it correctly?", "Name too short", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void tbCustomerName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

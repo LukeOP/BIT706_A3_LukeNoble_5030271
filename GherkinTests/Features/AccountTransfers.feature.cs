@@ -98,6 +98,7 @@ testRunner.And("a staff users exists with accounts", ((string)(null)), ((TechTal
         [Xunit.SkippableTheoryAttribute(DisplayName="Transfer between accounts success")]
         [Xunit.TraitAttribute("FeatureTitle", "Transfers")]
         [Xunit.TraitAttribute("Description", "Transfer between accounts success")]
+        [Xunit.TraitAttribute("Category", "transfer_success")]
         [Xunit.InlineDataAttribute("Everyday", "Investment", "50", "30", "20", new string[0])]
         [Xunit.InlineDataAttribute("Everyday", "Omni", "60", "50", "10", new string[0])]
         [Xunit.InlineDataAttribute("Investment", "Everyday", "500", "10", "490", new string[0])]
@@ -106,7 +107,13 @@ testRunner.And("a staff users exists with accounts", ((string)(null)), ((TechTal
         [Xunit.InlineDataAttribute("Omni", "Investment", "10", "5", "5", new string[0])]
         public virtual void TransferBetweenAccountsSuccess(string accountOne, string accountTwo, string initialFrom, string amount, string result, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "transfer_success"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("AccountOne", accountOne);
             argumentsOfScenario.Add("AccountTwo", accountTwo);
@@ -159,6 +166,7 @@ testRunner.Then(string.Format("the first account balance is {0}", result), ((str
         [Xunit.SkippableTheoryAttribute(DisplayName="Transfer between accounts insufficent funds")]
         [Xunit.TraitAttribute("FeatureTitle", "Transfers")]
         [Xunit.TraitAttribute("Description", "Transfer between accounts insufficent funds")]
+        [Xunit.TraitAttribute("Category", "transfer_failed_insufficient_funds")]
         [Xunit.InlineDataAttribute("Everyday", "Investment", "50", "300", new string[0])]
         [Xunit.InlineDataAttribute("Everyday", "Omni", "60", "500", new string[0])]
         [Xunit.InlineDataAttribute("Investment", "Everyday", "500", "800", new string[0])]
@@ -167,7 +175,13 @@ testRunner.Then(string.Format("the first account balance is {0}", result), ((str
         [Xunit.InlineDataAttribute("Omni", "Investment", "10", "500", new string[0])]
         public virtual void TransferBetweenAccountsInsufficentFunds(string account1, string account2, string initialFrom, string amount, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "transfer_failed_insufficient_funds"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Account1", account1);
             argumentsOfScenario.Add("Account2", account2);
@@ -219,6 +233,7 @@ testRunner.Then("an error message is produced", ((string)(null)), ((TechTalk.Spe
         [Xunit.SkippableTheoryAttribute(DisplayName="Transfers from Omni accounts can occur up to overdraft limit ($100)")]
         [Xunit.TraitAttribute("FeatureTitle", "Transfers")]
         [Xunit.TraitAttribute("Description", "Transfers from Omni accounts can occur up to overdraft limit ($100)")]
+        [Xunit.TraitAttribute("Category", "transfer_Overdraft")]
         [Xunit.InlineDataAttribute("100", "150", "pass", new string[0])]
         [Xunit.InlineDataAttribute("100", "200", "pass", new string[0])]
         [Xunit.InlineDataAttribute("0", "50", "pass", new string[0])]
@@ -229,7 +244,13 @@ testRunner.Then("an error message is produced", ((string)(null)), ((TechTalk.Spe
         [Xunit.InlineDataAttribute("-100", "1", "fail", new string[0])]
         public virtual void TransfersFromOmniAccountsCanOccurUpToOverdraftLimit100(string balance, string transfer, string result, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "transfer_Overdraft"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("balance", balance);
             argumentsOfScenario.Add("transfer", transfer);
@@ -276,6 +297,7 @@ testRunner.Then(string.Format("the transfer will \"{0}\"", result), ((string)(nu
         [Xunit.TraitAttribute("FeatureTitle", "Transfers")]
         [Xunit.TraitAttribute("Description", "A fee is charged on appropriate accounts and staff recieve a 50% reduction in fee" +
             "s")]
+        [Xunit.TraitAttribute("Category", "transfer_fees_on_Failure")]
         [Xunit.InlineDataAttribute("not_staff", "Everyday", "50", "100", "50", new string[0])]
         [Xunit.InlineDataAttribute("not_staff", "Everyday", "0", "100", "0", new string[0])]
         [Xunit.InlineDataAttribute("not_staff", "Investment", "50", "100", "40", new string[0])]
@@ -292,7 +314,13 @@ testRunner.Then(string.Format("the transfer will \"{0}\"", result), ((string)(nu
         [Xunit.InlineDataAttribute("staff", "Omni", "-100", "100", "-105", new string[0])]
         public virtual void AFeeIsChargedOnAppropriateAccountsAndStaffRecieveA50ReductionInFees(string state, string account_1, string value_1, string value_2, string remaining, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "transfer_fees_on_Failure"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("state", state);
             argumentsOfScenario.Add("account_1", account_1);
@@ -301,7 +329,7 @@ testRunner.Then(string.Format("the transfer will \"{0}\"", result), ((string)(nu
             argumentsOfScenario.Add("remaining", remaining);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A fee is charged on appropriate accounts and staff recieve a 50% reduction in fee" +
                     "s", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 62
+#line 63
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -324,16 +352,16 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 63
+#line 64
 testRunner.Given(string.Format("the customer is \"{0}\"", state), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 64
+#line 65
 testRunner.And(string.Format("that they have an \"{0}\" with a balance of {1}", account_1, value_1), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 65
+#line 66
 testRunner.When(string.Format("a transfer of {0} fails", value_2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 66
+#line 67
 testRunner.Then(string.Format("the remaining balance is {0}", remaining), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

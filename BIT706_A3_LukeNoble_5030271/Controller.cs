@@ -131,6 +131,7 @@ namespace BIT706_A3_LukeNoble_5030271
         /// </summary>
         /// <param name="cust">Customer object being edited (taken from cust in Controller class)</param>
         /// <param name="name">New name for customer</param>
+        /// <param name="staff">Boolean value of if customer is a staff member</param>
         public void EditCustomer(Customer cust, string name, bool staff)
         {
             ResetMessages();

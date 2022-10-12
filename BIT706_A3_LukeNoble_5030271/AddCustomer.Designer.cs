@@ -51,6 +51,7 @@
             this.tbCustomerName.Name = "tbCustomerName";
             this.tbCustomerName.Size = new System.Drawing.Size(279, 23);
             this.tbCustomerName.TabIndex = 6;
+            this.tbCustomerName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCustomerName_KeyPress);
             // 
             // lCustomerName
             // 
